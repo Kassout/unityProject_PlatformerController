@@ -402,6 +402,37 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &549563377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 549563378}
+  m_Layer: 0
+  m_Name: Ledge Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &549563378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549563377}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1398032899}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &576534574
 GameObject:
   m_ObjectHideFlags: 0
@@ -41357,6 +41388,7 @@ Transform:
   m_Children:
   - {fileID: 360449007}
   - {fileID: 1096669988}
+  - {fileID: 549563378}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -41446,7 +41478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amountOfJumps: 1
   movementSpeed: 9
-  jumpForce: 20
+  jumpForce: 21
   groundCheckRadius: 0.3
   wallCheckDistance: 0.65
   wallSlideSpeed: 1
@@ -41455,10 +41487,16 @@ MonoBehaviour:
   wallJumpForce: 30
   jumpTimerSet: 0.15
   turnTimerSet: 0.1
+  wallJumpTimerSet: 0.5
+  ledgeClimbXOffset1: 0.3
+  ledgeClimbXOffset2: 0.5
+  ledgeClimbYOffset1: 0
+  ledgeClimbYOffset2: 2
   wallHopDirection: {x: 1, y: 0.5}
   wallJumpDirection: {x: 1, y: 2}
   groundCheck: {fileID: 360449007}
   wallCheck: {fileID: 1096669988}
+  ledgeCheck: {fileID: 549563378}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
