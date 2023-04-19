@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
     private float _jumpTimer;
     private float _turnTimer;
     private float _wallJumpTimer;
+    private float _dashTimeLeft;
+    private float _lastImageXPosition;
+    private float _lastDash = float.NegativeInfinity;
     
     private int _amountOfJumpsLeft;
     private int _facingDirection = 1;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private bool _isTouchingLedge = false;
     private bool _canClimbLedge = false;
     private bool _ledgeDetected = false;
+    private bool _isDashing = false;
 
     private Vector2 _ledgePositionBottom;
     private Vector2 _ledgePosition1;
@@ -51,6 +55,10 @@ public class PlayerController : MonoBehaviour
     public float ledgeClimbXOffset2 = 0f;
     public float ledgeClimbYOffset1 = 0f;
     public float ledgeClimbYOffset2 = 0f;
+    public float dashTime;
+    public float dashSpeed;
+    public float distanceBetweenImages;
+    public float dashCoolDown;
     
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
@@ -79,6 +87,7 @@ public class PlayerController : MonoBehaviour
         CheckIfWallSliding();
         CheckJump();
         CheckLedgeClimb();
+        CheckDash();
     }
 
     private void FixedUpdate()
@@ -161,6 +170,7 @@ public class PlayerController : MonoBehaviour
 
         if (_isTouchingWall)
         {
+            _checkJumpMultiplier = false;
             _canWallJump = true;
         }
 
@@ -185,7 +195,7 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        if (Mathf.Abs(_rigidbody.velocity.x) > 0.01f)
+        if (Mathf.Abs(_rigidbody.velocity.x) >= 0.01f)
         {
             _isWalking = true;
         }
@@ -209,7 +219,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (_isGrounded || (_amountOfJumpsLeft > 0 && _isTouchingWall))
+            if (_isGrounded || (_amountOfJumpsLeft > 0 && !_isTouchingWall))
             {
                 NormalJump();
             }
@@ -246,6 +256,52 @@ public class PlayerController : MonoBehaviour
         {
             _checkJumpMultiplier = false;
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * variableJumpHeightMultiplier);
+        }
+
+        if (Input.GetButtonDown("Dash"))
+        {
+            if (Time.time >= (_lastDash + dashCoolDown))
+            {
+                AttemptToDash();
+            }
+        }
+    }
+
+    private void AttemptToDash()
+    {
+        _isDashing = true;
+        _dashTimeLeft = dashTime;
+        _lastDash = Time.time;
+
+        PlayerAfterImagePool.Instance.GetFromPool();
+        _lastImageXPosition = transform.position.x;
+    }
+
+    private void CheckDash()
+    {
+        if (_isDashing)
+        {
+            if (_dashTimeLeft > 0)
+            {
+                _canMove = false;
+                _canFlip = false;
+
+                _rigidbody.velocity = new Vector2(dashSpeed * _facingDirection, 0.0f);
+                _dashTimeLeft -= Time.deltaTime;
+
+                if (Mathf.Abs(transform.position.x - _lastImageXPosition) > distanceBetweenImages)
+                {
+                    PlayerAfterImagePool.Instance.GetFromPool();
+                    _lastImageXPosition = transform.position.x;
+                }
+            }
+
+            if (_dashTimeLeft <= 0 || _isTouchingWall)
+            {
+                _isDashing = false;
+                _canMove = true;
+                _canFlip = true;
+            }
         }
     }
     
