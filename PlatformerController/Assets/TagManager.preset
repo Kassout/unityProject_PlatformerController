@@ -14,7 +14,11 @@ Preset:
   m_Properties:
   - target: {fileID: 0}
     propertyPath: tags.Array.size
-    value: 0
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: tags.Array.data[0]
+    value: Enemy
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layers.Array.size
@@ -50,15 +54,15 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layers.Array.data[7]
-    value: 
+    value: Damageable
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layers.Array.data[8]
-    value: 
+    value: Dead
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layers.Array.data[9]
-    value: 
+    value: Player
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layers.Array.data[10]
@@ -150,7 +154,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.size
-    value: 6
+    value: 7
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[0].name
@@ -202,11 +206,11 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[4].name
-    value: Player
+    value: Enemy
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[4].uniqueID
-    value: 3511264989
+    value: 2620673911
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[4].locked
@@ -214,14 +218,26 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[5].name
-    value: Foreground Decoration
+    value: Player
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[5].uniqueID
-    value: 1371194943
+    value: 3511264989
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[5].locked
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[6].name
+    value: Foreground Decoration
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[6].uniqueID
+    value: 1371194943
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[6].locked
     value: 0
     objectReference: {fileID: 0}
   m_ExcludedProperties: []
