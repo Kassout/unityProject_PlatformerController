@@ -1,17 +1,16 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerAfterImageSprite : MonoBehaviour
 {
-    [SerializeField]
-    private float activeTime = 0.1f;
-    
-    [SerializeField]
-    private float alphaSet = 0.8f;
-    
+    [SerializeField] private float activeTime = 0.1f;
+
+    [SerializeField] private float alphaSet = 0.8f;
+    [SerializeField] private float alphaDecay = 0.85f;
+
     private float _timeActivated;
     private float _alpha;
-    private float _alphaMultiplier = 0.85f;
-    
+
     private Transform _player;
 
     private SpriteRenderer _spriteRenderer;
@@ -35,7 +34,7 @@ public class PlayerAfterImageSprite : MonoBehaviour
 
     private void Update()
     {
-        _alpha *= _alphaMultiplier;
+        _alpha -= alphaDecay * Time.deltaTime;
         _color = new Color(1f, 1f, 1f, _alpha);
         _spriteRenderer.color = _color;
 

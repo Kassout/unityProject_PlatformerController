@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class PlayerAfterImagePool : MonoBehaviour
 {
-    [SerializeField] 
-    private GameObject afterImagePrefab;
+    [SerializeField] private GameObject afterImagePrefab;
 
     private readonly Queue<GameObject> _availableObjects = new();
-    
+
     public static PlayerAfterImagePool Instance { get; private set; }
 
     private void Awake()

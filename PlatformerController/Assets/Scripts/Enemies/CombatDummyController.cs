@@ -14,18 +14,18 @@ public class CombatDummyController : MonoBehaviour
 
     private bool _playerOnLeft;
     private bool _knockBack;
-    
+
     private int _playerFacingDirection;
-    
+
     private float _currentHealth;
     private float _knockBackStart;
 
     private PlayerController _playerController;
-    
+
     private GameObject _aliveGameObject;
     private GameObject _brokenTopGameObject;
     private GameObject _brokenBottomGameObject;
-    
+
     private Rigidbody2D _aliveRigidbody;
     private Rigidbody2D _brokenTopRigidbody;
     private Rigidbody2D _brokenBottomRigidbody;
@@ -43,7 +43,7 @@ public class CombatDummyController : MonoBehaviour
         _brokenBottomGameObject = transform.Find("Broken Bottom").gameObject;
 
         _aliveAnimator = _aliveGameObject.GetComponent<Animator>();
-        
+
         _aliveRigidbody = _aliveGameObject.GetComponent<Rigidbody2D>();
         _brokenTopRigidbody = _brokenTopGameObject.GetComponent<Rigidbody2D>();
         _brokenBottomRigidbody = _brokenBottomGameObject.GetComponent<Rigidbody2D>();
@@ -58,12 +58,13 @@ public class CombatDummyController : MonoBehaviour
         CheckKnockBack();
     }
 
-    private void Damage(float amount)
+    private void Damage(float[] attackDetails)
     {
-        _currentHealth -= amount;
+        _currentHealth -= attackDetails[0];
         _playerFacingDirection = _playerController.GetFacingDirection();
 
-        Instantiate(hitParticle, _aliveAnimator.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
+        Instantiate(hitParticle, _aliveAnimator.transform.position,
+            Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
 
         if (_playerFacingDirection == 1)
         {

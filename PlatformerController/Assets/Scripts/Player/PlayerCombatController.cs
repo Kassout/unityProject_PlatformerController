@@ -2,25 +2,21 @@ using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    [SerializeField] 
-    private bool combatEnabled;
-    [SerializeField] 
-    private float inputTimer;
-    [SerializeField] 
-    private float attack1Radius;
-    [SerializeField] 
-    private float attack1Damage;
-    [SerializeField] 
-    private Transform attack1HitBoxPosition;
-    [SerializeField] 
-    private LayerMask whatIsDamageable;
+    [SerializeField] private bool combatEnabled;
+    [SerializeField] private float inputTimer;
+    [SerializeField] private float attack1Radius;
+    [SerializeField] private float attack1Damage;
+    [SerializeField] private Transform attack1HitBoxPosition;
+    [SerializeField] private LayerMask whatIsDamageable;
 
     private bool _gotInput = false;
     private bool _isAttacking = false;
     private bool _isFirstAttack = false;
 
     private float _lastInputTime = float.PositiveInfinity;
-    
+
+    private float[] _attackDetails = new float[2];
+
     private Animator _animator;
 
     private void Start()
@@ -63,7 +59,7 @@ public class PlayerCombatController : MonoBehaviour
                 _animator.SetBool("isAttacking", _isAttacking);
             }
         }
-        
+
         if (Time.time >= _lastInputTime + inputTimer)
         {
             // Wait for new input
@@ -76,9 +72,12 @@ public class PlayerCombatController : MonoBehaviour
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPosition.position, attack1Radius,
             whatIsDamageable);
 
+        _attackDetails[0] = attack1Damage;
+        _attackDetails[1] = transform.position.x;
+
         foreach (Collider2D collider in detectedObjects)
         {
-            collider.transform.parent.SendMessage("Damage", attack1Damage);
+            collider.transform.parent.SendMessage("Damage", _attackDetails);
             // Instantiate hit particles
         }
     }
