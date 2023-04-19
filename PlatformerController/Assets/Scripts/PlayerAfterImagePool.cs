@@ -6,7 +6,7 @@ public class PlayerAfterImagePool : MonoBehaviour
     [SerializeField] 
     private GameObject afterImagePrefab;
 
-    private Queue<GameObject> _availableObjects = new Queue<GameObject>();
+    private readonly Queue<GameObject> _availableObjects = new();
     
     public static PlayerAfterImagePool Instance { get; private set; }
 
@@ -20,8 +20,7 @@ public class PlayerAfterImagePool : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            var instanceToAdd = Instantiate(afterImagePrefab);
-            instanceToAdd.transform.SetParent(transform);
+            var instanceToAdd = Instantiate(afterImagePrefab, transform, true);
             AddToPool(instanceToAdd);
         }
     }

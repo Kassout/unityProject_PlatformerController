@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle
+  m_Name: Attack_1_2
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 1045782280, guid: 592738eeb0516544f96cef7ba8b262a8, type: 3}
+      value: {fileID: -970305948, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
+    - time: 0.06666667
+      value: {fileID: 1302775537, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
+    - time: 0.13333334
+      value: {fileID: 140886970, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
     - time: 0.2
-      value: {fileID: -528617716, guid: 592738eeb0516544f96cef7ba8b262a8, type: 3}
-    - time: 0.4
-      value: {fileID: 991068389, guid: 592738eeb0516544f96cef7ba8b262a8, type: 3}
-    - time: 0.6
-      value: {fileID: -1735687328, guid: 592738eeb0516544f96cef7ba8b262a8, type: 3}
+      value: {fileID: 1142082146, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
+    - time: 0.26666668
+      value: {fileID: -492935952, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,16 +52,17 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1045782280, guid: 592738eeb0516544f96cef7ba8b262a8, type: 3}
-    - {fileID: -528617716, guid: 592738eeb0516544f96cef7ba8b262a8, type: 3}
-    - {fileID: 991068389, guid: 592738eeb0516544f96cef7ba8b262a8, type: 3}
-    - {fileID: -1735687328, guid: 592738eeb0516544f96cef7ba8b262a8, type: 3}
+    - {fileID: -970305948, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
+    - {fileID: 1302775537, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
+    - {fileID: 140886970, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
+    - {fileID: 1142082146, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
+    - {fileID: -492935952, guid: 857bc215844906d44ba0e5e7a084bf3b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6666667
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -78,4 +81,32 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: DisableFlip
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.06666667
+    functionName: CheckAttackHitBox
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.2
+    functionName: EnableFlip
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.33333334
+    functionName: FinishAttack1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

@@ -397,6 +397,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void DisableFlip()
+    {
+        _canFlip = false;
+    }
+
+    public void EnableFlip()
+    {
+        _canFlip = true;
+    }
+
     private void Flip()
     {
         if (!_isWallSliding && _canFlip)
