@@ -112,15 +112,55 @@ MonoBehaviour:
   movementSpeed: 3
   maxHealth: 30
   knockBackDuration: 0.1
+  lastTouchDamageTime: 0
+  touchDamageCooldown: 0.2
+  touchDamage: 10
+  touchDamageWidth: 1.5
+  touchDamageHeight: 0.9
   knockBackSpeed: {x: 10, y: 5}
   hitParticle: {fileID: 387398596249232441, guid: 039c2099e6ba0ea489ed7b1f89327952, type: 3}
   deathChunkParticle: {fileID: 6493882546628059170, guid: 9f76e61a734cb634d972c095814b4fba, type: 3}
   deathBloodParticle: {fileID: 3630033117731657463, guid: 56d78e0f55fd9844da6f68a6c23d7d26, type: 3}
   groundCheck: {fileID: 615390708266771064}
   wallCheck: {fileID: 1346268323037684036}
+  touchDamageCheck: {fileID: 7997289344114495429}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!1 &7479599606521636885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7997289344114495429}
+  m_Layer: 7
+  m_Name: Touch Damage Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7997289344114495429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479599606521636885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1841266698946579589}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8533911954540788295
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +195,7 @@ Transform:
   m_Children:
   - {fileID: 615390708266771064}
   - {fileID: 1346268323037684036}
+  - {fileID: 7997289344114495429}
   m_Father: {fileID: 5767154440470153516}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

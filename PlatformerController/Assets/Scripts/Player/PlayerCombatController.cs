@@ -18,11 +18,16 @@ public class PlayerCombatController : MonoBehaviour
     private float[] _attackDetails = new float[2];
 
     private Animator _animator;
+    private PlayerController _playerController;
+    private PlayerStats _playerStats;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _animator.SetBool("canAttack", combatEnabled);
+        
+        _playerStats = GetComponent<PlayerStats>();
+        _playerController = GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -87,6 +92,27 @@ public class PlayerCombatController : MonoBehaviour
         _isAttacking = false;
         _animator.SetBool("isAttacking", _isAttacking);
         _animator.SetBool("attack1", false);
+    }
+
+    private void Damage(float[] attackDetails)
+    {
+        if (!_playerController.GetDashStatus())
+        {
+            int direction;
+        
+            _playerStats.DecreaseHealth(attackDetails[0]);
+        
+            if (attackDetails[1] < transform.position.x)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+        
+            _playerController.KnockBack(direction);
+        }
     }
 
     private void OnDrawGizmos()

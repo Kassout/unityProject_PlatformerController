@@ -15,6 +15,10 @@ public class BasicEnemyController : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float maxHealth;
     [SerializeField] private float knockBackDuration;
+    [SerializeField] private float touchDamageCooldown;
+    [SerializeField] private float touchDamage;
+    [SerializeField] private float touchDamageWidth;
+    [SerializeField] private float touchDamageHeight;
 
     [SerializeField] private Vector2 knockBackSpeed;
 
@@ -24,8 +28,10 @@ public class BasicEnemyController : MonoBehaviour
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
+    [SerializeField] private Transform touchDamageCheck;
 
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsPlayer;
 
     private bool _groundDetected;
     private bool _wallDetected;
@@ -35,8 +41,13 @@ public class BasicEnemyController : MonoBehaviour
 
     private float _currentHealth;
     private float _knockBackStartTime;
+    private float _lastTouchDamageTime;
+
+    private float[] _attackDetails = new float[2];
 
     private Vector2 _movement;
+    private Vector2 _touchDamageBotLeft;
+    private Vector2 _touchDamageTopRight;
 
     private State _currentState;
 
@@ -80,6 +91,8 @@ public class BasicEnemyController : MonoBehaviour
     {
         _groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
         _wallDetected = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
+
+        CheckTouchDamage();
 
         if (!_groundDetected || _wallDetected)
         {
@@ -168,6 +181,27 @@ public class BasicEnemyController : MonoBehaviour
         }
     }
 
+    private void CheckTouchDamage()
+    {
+        if (Time.time >= _lastTouchDamageTime + touchDamageCooldown)
+        {
+            var touchDamageCheckPosition = touchDamageCheck.position;
+            _touchDamageBotLeft.Set(touchDamageCheckPosition.x - (touchDamageWidth / 2),
+                touchDamageCheckPosition.y - (touchDamageHeight / 2));
+            _touchDamageTopRight.Set(touchDamageCheckPosition.x + (touchDamageWidth / 2),
+                touchDamageCheckPosition.y + (touchDamageHeight / 2));
+
+            Collider2D hit = Physics2D.OverlapArea(_touchDamageBotLeft, _touchDamageTopRight, whatIsPlayer);
+            if (hit)
+            {
+                _lastTouchDamageTime = Time.time;
+                _attackDetails[0] = touchDamage;
+                _attackDetails[1] = _aliveGameObject.transform.position.x;
+                hit.SendMessage("Damage", _attackDetails);
+            }
+        }
+    }
+
     private void Flip()
     {
         _facingDirection *= -1;
@@ -210,7 +244,22 @@ public class BasicEnemyController : MonoBehaviour
         var groundCheckPosition = groundCheck.position;
         Gizmos.DrawLine(groundCheckPosition,
             new Vector2(groundCheckPosition.x, groundCheckPosition.y - groundCheckDistance));
+
         var wallCheckPosition = wallCheck.position;
         Gizmos.DrawLine(wallCheckPosition, new Vector2(wallCheckPosition.x + wallCheckDistance, wallCheckPosition.y));
+
+        var touchDamageCheckPosition = touchDamageCheck.position;
+        var bottomLeft = new Vector2(touchDamageCheckPosition.x - (touchDamageWidth / 2),
+            touchDamageCheckPosition.y - (touchDamageHeight / 2));
+        var bottomRight = new Vector2(touchDamageCheckPosition.x + (touchDamageWidth / 2),
+            touchDamageCheckPosition.y - (touchDamageHeight / 2));
+        var topRight = new Vector2(touchDamageCheckPosition.x + (touchDamageWidth / 2),
+            touchDamageCheckPosition.y + (touchDamageHeight / 2));
+        var topLeft = new Vector2(touchDamageCheckPosition.x - (touchDamageWidth / 2),
+            touchDamageCheckPosition.y + (touchDamageHeight / 2));
+        Gizmos.DrawLine(bottomLeft, bottomRight);
+        Gizmos.DrawLine(bottomRight, topRight);
+        Gizmos.DrawLine(topRight, topLeft);
+        Gizmos.DrawLine(topLeft, bottomLeft);
     }
 }

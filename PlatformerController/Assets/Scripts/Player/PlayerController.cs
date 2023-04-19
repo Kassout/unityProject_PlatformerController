@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private float knockBackDuration;
+    
+    [SerializeField] private Vector2 knockBackSpeed;
+    
     private float _movementInputDirection;
     private float _jumpTimer;
     private float _turnTimer;
@@ -9,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private float _dashTimeLeft;
     private float _lastImageXPosition;
     private float _lastDash = float.NegativeInfinity;
+    private float _knockBackStartTime;
 
     private int _amountOfJumpsLeft;
     private int _facingDirection = 1;
@@ -30,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private bool _canClimbLedge = false;
     private bool _ledgeDetected = false;
     private bool _isDashing = false;
+    private bool _knockBack = false;
 
     private Vector2 _ledgePositionBottom;
     private Vector2 _ledgePosition1;
@@ -88,6 +94,7 @@ public class PlayerController : MonoBehaviour
         CheckJump();
         CheckLedgeClimb();
         CheckDash();
+        CheckKnockBack();
     }
 
     private void FixedUpdate()
@@ -109,6 +116,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool GetDashStatus()
+    {
+        return _isDashing;
+    }
+    
+    public void KnockBack(int direction)
+    {
+        _knockBack = true;
+        _knockBackStartTime = Time.time;
+        _rigidbody.velocity = new Vector2(knockBackSpeed.x * direction, knockBackSpeed.y);
+    }
+
+    private void CheckKnockBack()
+    {
+        if (Time.time >= _knockBackStartTime + knockBackDuration && _knockBack)
+        {
+            _knockBack = false;
+            _rigidbody.velocity = new Vector2(0.0f, _rigidbody.velocity.y);
+        }
+    }
+    
     private void CheckLedgeClimb()
     {
         if (_ledgeDetected && !_canClimbLedge)
@@ -287,11 +315,6 @@ public class PlayerController : MonoBehaviour
         _lastImageXPosition = transform.position.x;
     }
 
-    public int GetFacingDirection()
-    {
-        return _facingDirection;
-    }
-
     private void CheckDash()
     {
         if (_isDashing)
@@ -396,11 +419,11 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if (!_isGrounded && !_isWallSliding && _movementInputDirection == 0)
+        if (!_isGrounded && !_isWallSliding && _movementInputDirection == 0 && !_knockBack)
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x * airDragMultiplier, _rigidbody.velocity.y);
         }
-        else if (_canMove)
+        else if (_canMove && !_knockBack)
         {
             _rigidbody.velocity = new Vector2(movementSpeed * _movementInputDirection, _rigidbody.velocity.y);
         }
@@ -426,7 +449,7 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        if (!_isWallSliding && _canFlip)
+        if (!_isWallSliding && _canFlip && !_knockBack)
         {
             _facingDirection *= -1;
             _isFacingRight = !_isFacingRight;
