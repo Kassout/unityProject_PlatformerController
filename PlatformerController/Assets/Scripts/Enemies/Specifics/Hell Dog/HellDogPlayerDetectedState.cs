@@ -1,8 +1,9 @@
-public class HellDogMoveState : MoveState
+public class HellDogPlayerDetectedState : PlayerDetectedState
 {
     private HellDog _hellDog;
     
-    public HellDogMoveState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, MoveStateData stateData, HellDog hellDog) 
+    public HellDogPlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
+        PlayerDetectedStateData stateData, HellDog hellDog) 
         : base(entity, stateMachine, animationBoolName, stateData)
     {
         _hellDog = hellDog;
@@ -22,11 +23,7 @@ public class HellDogMoveState : MoveState
     {
         base.LogicUpdate();
 
-        if (_isPlayerInMinAggroRange)
-        {
-            _stateMachine.ChangeState(_hellDog.PlayerDetectedState);
-        }
-        else if (_isDetectingWall || !_isDetectingLedge)
+        if (!_isPlayerInMaxAggroRange)
         {
             _hellDog.IdleState.SetFlipAfterIdle(true);
             _stateMachine.ChangeState(_hellDog.IdleState);

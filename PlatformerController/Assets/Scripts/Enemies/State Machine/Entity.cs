@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -14,6 +13,7 @@ public class Entity : MonoBehaviour
 
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform ledgeCheck;
+    [SerializeField] private Transform playerCheck;
     
     private Vector2 _velocityWorkspace;
 
@@ -54,6 +54,18 @@ public class Entity : MonoBehaviour
     {
         return Physics2D.Raycast(ledgeCheck.position, Vector2.down, 
             entityData.ledgeCheckDistance, entityData.whatIsGround);
+    }
+
+    public virtual bool CheckPlayerInMinAggroRange()
+    {
+        return Physics2D.Raycast(playerCheck.position, AliveGameObject.transform.right, 
+            entityData.minAggroDistance, entityData.whatIsPlayer);
+    }
+
+    public virtual bool CheckPlayerInMaxAggroRange()
+    {
+        return Physics2D.Raycast(playerCheck.position, AliveGameObject.transform.right, 
+            entityData.maxAggroDistance, entityData.whatIsPlayer);
     }
 
     public virtual void Flip()

@@ -22,7 +22,11 @@ public class HellDogIdleState : IdleState
     {
         base.LogicUpdate();
 
-        if (_isIdleTimeOver)
+        if (_isPlayerInMinAggroRange)
+        {
+            _stateMachine.ChangeState(_hellDog.PlayerDetectedState);
+        } 
+        else if (_isIdleTimeOver)
         {
             _stateMachine.ChangeState(_hellDog.MoveState);
         }
