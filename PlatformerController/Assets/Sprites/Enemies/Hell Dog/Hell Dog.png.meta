@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e0d167b9c27bd10439894e1a3fb883d9
+guid: 21bd2edb33e70d3468136bbef299ec46
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -133,8 +133,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f62a90e64a004014c87bf1e927d3af45
-      internalID: 871319577
+      spriteID: b91b15b9fe7b12747a80c003b9f462a5
+      internalID: 1265362800
       vertices: []
       indices: 
       edges: []
@@ -144,7 +144,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04b45e91c21921f409b0ea9da7d5a9cb
-      internalID: -2003971194
+      spriteID: 2c46589eff7468544a22596a85f39678
+      internalID: -1494298407
       vertices: []
       indices: 
       edges: []
@@ -165,7 +165,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -175,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fabb7938707e8347a50aa044fc626e3
-      internalID: 270343229
+      spriteID: 595ba5f7bf6ff2949b35e746a8178a1b
+      internalID: 1672426901
       vertices: []
       indices: 
       edges: []
@@ -186,7 +186,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -196,8 +196,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd1f88d5adf09724597494be18db7bc1
-      internalID: 1319815275
+      spriteID: 47e17a3d1043cfa40be399653421210f
+      internalID: 509933726
       vertices: []
       indices: 
       edges: []
@@ -207,7 +207,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -217,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 066f7f0e499acd749b106bf7999fbbf7
-      internalID: 330096288
+      spriteID: 2c68459d45b6a2949ba695cec83b31f0
+      internalID: 1646110543
       vertices: []
       indices: 
       edges: []
@@ -228,7 +228,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -238,8 +238,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acb57eb28d24fa740baab7c5301486b5
-      internalID: -1831913223
+      spriteID: 13875f371e61e3b44b6b01af1da0df3e
+      internalID: 249395753
       vertices: []
       indices: 
       edges: []
@@ -249,7 +249,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -259,8 +259,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc22e79e6f5ae6e439f58b31d2458afe
-      internalID: -40678953
+      spriteID: 75fc8672262933d46ba5856e8aa091e4
+      internalID: 1095207375
       vertices: []
       indices: 
       edges: []
@@ -270,6 +270,27 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a87e97d69df45164b936266b2a70be99
+      internalID: 776224662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hell Dog_8
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -280,29 +301,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3198e69019f039f439c014d6a7a5f109
-      internalID: 1218650595
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hell Dog_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b513c1d4e8b2c5a4fa19273df9dd44a7
-      internalID: 1069334869
+      spriteID: 2ea25286bf0738144845484745f9f57a
+      internalID: -1677455583
       vertices: []
       indices: 
       edges: []
@@ -312,6 +312,69 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7a22e8e9a64bce48b85b9bab7e26ac5
+      internalID: -687333500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hell Dog_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b301b7c666b9898438b3b94b9f91889a
+      internalID: -1577046921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hell Dog_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d75afa464809524b8d27f17b2abcab6
+      internalID: -1072955018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hell Dog_12
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 64
         width: 64
         height: 64
@@ -322,14 +385,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ce5bd00ef771014fa4d1521b88add0e
-      internalID: -170887641
+      spriteID: 03fc80052f74e2d42a1cb884ef28d67b
+      internalID: -967058906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hell Dog_10
+      name: Hell Dog_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26c8b99b1e4ad33428f9331bceb0304c
+      internalID: -1495477035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hell Dog_14
       rect:
         serializedVersion: 2
         x: 128
@@ -343,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d761bcf866f18a349b47befe1fdd3a47
-      internalID: 38084595
+      spriteID: ef5b855bfa200de4cba2e102191bb554
+      internalID: 883354340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hell Dog_11
+      name: Hell Dog_15
       rect:
         serializedVersion: 2
         x: 192
@@ -364,14 +448,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa6647afca2122548905c9f3998595a6
-      internalID: -1010671665
+      spriteID: 7ca41ed164075b94eb3f236fcb2366d4
+      internalID: -277133465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hell Dog_12
+      name: Hell Dog_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2bec735502adaa43a1f35c48ff10f53
+      internalID: 5888885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hell Dog_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6a1f0d38a6afbf4386c645aa92c779d
+      internalID: 171008379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hell Dog_18
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6b71109625a93948b46094461573ce2
-      internalID: 688139017
+      spriteID: f5cdfb97946a4144387eefced15283a6
+      internalID: -868949248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hell Dog_13
+      name: Hell Dog_19
       rect:
         serializedVersion: 2
         x: 64
@@ -406,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f5fb92eb6af38a468a0ea8f47e4a7e6
-      internalID: 600609270
+      spriteID: cea1a8ffd325d7e4eba44e068f9a1305
+      internalID: -1617103057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hell Dog_14
+      name: Hell Dog_20
       rect:
         serializedVersion: 2
         x: 128
@@ -427,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d7b169acb6511146877df968364a908
-      internalID: -1583652915
+      spriteID: b2c6c371ea5e8954a847c5da7d78465b
+      internalID: -1761162996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hell Dog_15
+      name: Hell Dog_21
       rect:
         serializedVersion: 2
         x: 192
@@ -448,50 +574,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87b5bbee6cbcf3e41992212c30a0f2fb
-      internalID: -1606797720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hell Dog_16
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f6fe2a0455c7a64c905f8158e8417fb
-      internalID: 1692718778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hell Dog_17
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82e0ea7eb1f24374fa3e032148e8c699
-      internalID: -1478611076
+      spriteID: 33cca130609280c4290605892830834c
+      internalID: -841152895
       vertices: []
       indices: 
       edges: []
@@ -507,24 +591,28 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hell Dog_0: 871319577
-      Hell Dog_1: -2003971194
-      Hell Dog_10: 38084595
-      Hell Dog_11: -1010671665
-      Hell Dog_12: 688139017
-      Hell Dog_13: 600609270
-      Hell Dog_14: -1583652915
-      Hell Dog_15: -1606797720
-      Hell Dog_16: 1692718778
-      Hell Dog_17: -1478611076
-      Hell Dog_2: 270343229
-      Hell Dog_3: 1319815275
-      Hell Dog_4: 330096288
-      Hell Dog_5: -1831913223
-      Hell Dog_6: -40678953
-      Hell Dog_7: 1218650595
-      Hell Dog_8: 1069334869
-      Hell Dog_9: -170887641
+      Hell Dog_0: 1265362800
+      Hell Dog_1: -1494298407
+      Hell Dog_10: -1577046921
+      Hell Dog_11: -1072955018
+      Hell Dog_12: -967058906
+      Hell Dog_13: -1495477035
+      Hell Dog_14: 883354340
+      Hell Dog_15: -277133465
+      Hell Dog_16: 5888885
+      Hell Dog_17: 171008379
+      Hell Dog_18: -868949248
+      Hell Dog_19: -1617103057
+      Hell Dog_2: 1672426901
+      Hell Dog_20: -1761162996
+      Hell Dog_21: -841152895
+      Hell Dog_3: 509933726
+      Hell Dog_4: 1646110543
+      Hell Dog_5: 249395753
+      Hell Dog_6: 1095207375
+      Hell Dog_7: 776224662
+      Hell Dog_8: -1677455583
+      Hell Dog_9: -687333500
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
