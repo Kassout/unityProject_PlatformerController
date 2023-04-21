@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     public Rigidbody2D Rigidbody { get; private set; }
     public Animator Animator { get; private set; }
     public GameObject AliveGameObject { get; private set; }
+    public AnimationToStateMachine AnimationToStateMachine { get; private set; }
 
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform ledgeCheck;
@@ -24,6 +25,7 @@ public class Entity : MonoBehaviour
         AliveGameObject = transform.Find("Alive").gameObject;
         Rigidbody = AliveGameObject.GetComponent<Rigidbody2D>();
         Animator = AliveGameObject.GetComponent<Animator>();
+        AnimationToStateMachine = AliveGameObject.GetComponent<AnimationToStateMachine>();
 
         stateMachine = new FiniteStateMachine();
     }
@@ -68,6 +70,12 @@ public class Entity : MonoBehaviour
             entityData.maxAggroDistance, entityData.whatIsPlayer);
     }
 
+    public virtual bool CheckPlayerInCloseRangeAction()
+    {
+        return Physics2D.Raycast(playerCheck.position, AliveGameObject.transform.right, 
+            entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+    }
+
     public virtual void Flip()
     {
         FacingDirection *= -1;
@@ -78,5 +86,9 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.right * FacingDirection * entityData.wallCheckDistance);
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + Vector3.down * entityData.ledgeCheckDistance);
+        
+        Gizmos.DrawWireSphere(playerCheck.position + Vector3.right * entityData.closeRangeActionDistance, 0.2f);
+        Gizmos.DrawWireSphere(playerCheck.position + Vector3.right * entityData.minAggroDistance, 0.2f);
+        Gizmos.DrawWireSphere(playerCheck.position + Vector3.right * entityData.maxAggroDistance, 0.2f);
     }
 }

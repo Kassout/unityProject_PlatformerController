@@ -9,6 +9,8 @@ public class EntityData : ScriptableObject
     public float minAggroDistance = 3f;
     public float maxAggroDistance = 4f;
 
+    public float closeRangeActionDistance = 1f;
+
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
 }

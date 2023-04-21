@@ -23,7 +23,11 @@ public class HellDogPlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if (_performLongRangeAction)
+        if (_performCloseRangeAction)
+        {
+            _stateMachine.ChangeState(_hellDog.MeleeAttackState);
+        }
+        else if (_performLongRangeAction)
         {
             _stateMachine.ChangeState(_hellDog.ChargeState);
         }

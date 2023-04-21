@@ -1,10 +1,12 @@
-public class HellDogChargeState : ChargeState
+using UnityEngine;
+
+public class HellDogMeleeAttackState : MeleeAttackState
 {
     private HellDog _hellDog;
     
-    public HellDogChargeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        ChargeStateData stateData, HellDog hellDog) 
-        : base(entity, stateMachine, animationBoolName, stateData)
+    public HellDogMeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
+        Transform attackPosition, MeleeAttackStateData stateData, HellDog hellDog) 
+        : base(entity, stateMachine, animationBoolName, attackPosition, stateData)
     {
         _hellDog = hellDog;
     }
@@ -23,19 +25,11 @@ public class HellDogChargeState : ChargeState
     {
         base.LogicUpdate();
 
-        if (_performCloseRangeAction)
+        if (_isAnimationFinished)
         {
-            _stateMachine.ChangeState(_hellDog.MeleeAttackState);
-        } 
-        else if (!_isDetectingLedge || _isDetectingWall)
-        {
-            _stateMachine.ChangeState(_hellDog.LookForPlayerState);
-        } 
-        else if (_isChargeTimeOver)
-        { 
             if (_isPlayerInMinAggroRange)
             {
-                _stateMachine.ChangeState(_hellDog.PlayerDetectedState);
+                _stateMachine.ChangeState(_hellDog.PlayerDetectedState);   
             }
             else
             {
@@ -52,5 +46,10 @@ public class HellDogChargeState : ChargeState
     public override void DoChecks()
     {
         base.DoChecks();
+    }
+
+    public override void TriggerAttack()
+    {
+        base.TriggerAttack();
     }
 }

@@ -6,6 +6,7 @@ public class ChargeState : State
     protected bool _isDetectingLedge;
     protected bool _isDetectingWall;
     protected bool _isChargeTimeOver;
+    protected bool _performCloseRangeAction;
     
     protected ChargeStateData _stateData;
     
@@ -50,5 +51,6 @@ public class ChargeState : State
         _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
         _isDetectingLedge = _entity.CheckLedge();
         _isDetectingWall = _entity.CheckWall();
+        _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
     }
 }

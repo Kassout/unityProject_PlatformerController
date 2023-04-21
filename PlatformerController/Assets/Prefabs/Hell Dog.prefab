@@ -147,6 +147,39 @@ MonoBehaviour:
   playerDetectedStateData: {fileID: 11400000, guid: 1651b0bfdfca3694a9f0a94d54429a5c, type: 2}
   chargeStateData: {fileID: 11400000, guid: cc0fbdda36fd7704184dc5c851617dbe, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: b563baa83a7575940922196eb2b0570b, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: c838014bc5ba63e4d98fd02afe99242b, type: 2}
+  meleeAttackPosition: {fileID: 6341586112789293837}
+--- !u!1 &7108155061544277706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6341586112789293837}
+  m_Layer: 7
+  m_Name: Melee Attack Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6341586112789293837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7108155061544277706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1841266698946579589}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7479599606521636885
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +224,7 @@ GameObject:
   - component: {fileID: 9218559100691642474}
   - component: {fileID: 7841627092806457067}
   - component: {fileID: 7897861612483945724}
+  - component: {fileID: 2999155637716082979}
   m_Layer: 7
   m_Name: Alive
   m_TagString: Enemy
@@ -214,6 +248,7 @@ Transform:
   - {fileID: 1346268323037684036}
   - {fileID: 7997289344114495429}
   - {fileID: 3348261370126381550}
+  - {fileID: 6341586112789293837}
   m_Father: {fileID: 5767154440470153516}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -362,3 +397,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2999155637716082979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8533911954540788295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab96b38a80cd8b94f8145391a976b802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

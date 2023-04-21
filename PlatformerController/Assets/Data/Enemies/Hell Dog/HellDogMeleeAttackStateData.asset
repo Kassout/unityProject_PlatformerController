@@ -9,17 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d50c687334c20cf41b38b887271554c6, type: 3}
-  m_Name: HellDogBaseData
+  m_Script: {fileID: 11500000, guid: 51b99daad058fe94f854b5179aa8f2d5, type: 3}
+  m_Name: HellDogMeleeAttackStateData
   m_EditorClassIdentifier: 
-  wallCheckDistance: 0.2
-  ledgeCheckDistance: 0.4
-  minAggroDistance: 7
-  maxAggroDistance: 8
-  closeRangeActionDistance: 1.75
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
+  attackRadius: 0.75
+  attackDamage: 10
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
