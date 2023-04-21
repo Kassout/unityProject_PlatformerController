@@ -22,7 +22,6 @@ public class IdleState : State
 
         _entity.SetVelocity(0f);
         _isIdleTimeOver = false;
-        _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
         SetRandomIdleTime();
     }
 
@@ -49,7 +48,12 @@ public class IdleState : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
 
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        
         _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
     }
 

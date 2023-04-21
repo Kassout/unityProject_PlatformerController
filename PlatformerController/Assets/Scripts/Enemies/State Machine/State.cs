@@ -6,9 +6,9 @@ public abstract class State
 
     protected string _animationBoolName;
 
-    protected FiniteStateMachine _stateMachine;
     protected Entity _entity;
-    
+    protected FiniteStateMachine _stateMachine;
+
     protected State(Entity entity, FiniteStateMachine stateMachine, string animationBoolName)
     {
         _entity = entity;
@@ -20,6 +20,7 @@ public abstract class State
     {
         _startTime = Time.time;
         _entity.Animator.SetBool(_animationBoolName, true);
+        DoChecks();
     }
 
     public virtual void Exit()
@@ -33,6 +34,11 @@ public abstract class State
     }
 
     public virtual void PhysicsUpdate()
+    {
+        DoChecks();
+    }
+
+    public virtual void DoChecks()
     {
         
     }
