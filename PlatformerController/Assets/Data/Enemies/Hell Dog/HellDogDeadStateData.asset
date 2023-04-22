@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e5b5649e1ec5f4b8e488e667af53bf, type: 3}
+  m_Name: HellDogDeadStateData
+  m_EditorClassIdentifier: 
+  deathChunkParticles: {fileID: 6493882546628059170, guid: 9f76e61a734cb634d972c095814b4fba, type: 3}
+  deathBloodParticles: {fileID: 3630033117731657463, guid: 56d78e0f55fd9844da6f68a6c23d7d26, type: 3}

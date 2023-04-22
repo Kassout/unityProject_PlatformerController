@@ -6,6 +6,7 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField] private float inputTimer;
     [SerializeField] private float attack1Radius;
     [SerializeField] private float attack1Damage;
+    [SerializeField] private float stunDamageAmount = 1f;
     [SerializeField] private Transform attack1HitBoxPosition;
     [SerializeField] private LayerMask whatIsDamageable;
 
@@ -79,6 +80,7 @@ public class PlayerCombatController : MonoBehaviour
 
         _attackDetails.damageAmount = attack1Damage;
         _attackDetails.position = transform.position;
+        _attackDetails.stunDamageAmount = stunDamageAmount;
 
         foreach (Collider2D collider in detectedObjects)
         {

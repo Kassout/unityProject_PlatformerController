@@ -35,6 +35,11 @@ public class HellDogPlayerDetectedState : PlayerDetectedState
         {
             _stateMachine.ChangeState(_hellDog.LookForPlayerState);
         }
+        else if (!_isDetectingLedge)
+        {
+            _entity.Flip();
+            _stateMachine.ChangeState(_hellDog.MoveState);
+        }
     }
 
     public override void PhysicsUpdate()

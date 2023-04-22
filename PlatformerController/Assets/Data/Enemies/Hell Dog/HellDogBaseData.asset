@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50c687334c20cf41b38b887271554c6, type: 3}
   m_Name: HellDogBaseData
   m_EditorClassIdentifier: 
+  maxHealth: 50
+  damageHopSpeed: 10
   wallCheckDistance: 0.2
-  ledgeCheckDistance: 0.4
+  ledgeCheckDistance: 1
+  groundCheckRadius: 0.3
   minAggroDistance: 7
   maxAggroDistance: 8
-  closeRangeActionDistance: 1.75
+  stunResistance: 3
+  stunRecoveryTime: 2
+  closeRangeActionDistance: 1.7
+  hitParticle: {fileID: 387398596249232441, guid: 039c2099e6ba0ea489ed7b1f89327952, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64

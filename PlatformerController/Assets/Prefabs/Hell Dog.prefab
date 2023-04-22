@@ -62,6 +62,37 @@ Transform:
   m_Father: {fileID: 1841266698946579589}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4157179489525030641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4643118640060196708}
+  m_Layer: 7
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4643118640060196708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157179489525030641}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1841266698946579589}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4869843675464611801
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,12 +173,15 @@ MonoBehaviour:
   wallCheck: {fileID: 1346268323037684036}
   ledgeCheck: {fileID: 615390708266771064}
   playerCheck: {fileID: 3348261370126381550}
+  groundCheck: {fileID: 4643118640060196708}
   idleStateData: {fileID: 11400000, guid: 8ae9c78083588404496cbfd49eb2747f, type: 2}
   moveStateData: {fileID: 11400000, guid: 72e095ea4d17e974db0a35c0bc86b0e0, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 1651b0bfdfca3694a9f0a94d54429a5c, type: 2}
   chargeStateData: {fileID: 11400000, guid: cc0fbdda36fd7704184dc5c851617dbe, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: b563baa83a7575940922196eb2b0570b, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: c838014bc5ba63e4d98fd02afe99242b, type: 2}
+  stunStateData: {fileID: 11400000, guid: afc6faa33f5498543aece69e546c1df9, type: 2}
+  deadStateData: {fileID: 11400000, guid: c7306399f04d1b94b9a819750f363c75, type: 2}
   meleeAttackPosition: {fileID: 6341586112789293837}
 --- !u!1 &7108155061544277706
 GameObject:
@@ -249,6 +283,7 @@ Transform:
   - {fileID: 7997289344114495429}
   - {fileID: 3348261370126381550}
   - {fileID: 6341586112789293837}
+  - {fileID: 4643118640060196708}
   m_Father: {fileID: 5767154440470153516}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

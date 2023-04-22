@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24119b410a372f34e87f5430125e6619, type: 3}
-  m_Name: HellDogChargeStateData
+  m_Script: {fileID: 11500000, guid: 2cfce3b5b98a4c2438e57f0b8c7827ba, type: 3}
+  m_Name: HellDogStunStateData
   m_EditorClassIdentifier: 
-  chargeSpeed: 6
-  chargeTime: 1.5
+  stunTime: 3
+  stunKnockBackTime: 0.2
+  stunKnockBackSpeed: 20
+  stunKnockBackAngle: {x: 1, y: 2}

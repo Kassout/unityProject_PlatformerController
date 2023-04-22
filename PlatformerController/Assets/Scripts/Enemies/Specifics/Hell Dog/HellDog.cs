@@ -8,6 +8,8 @@ public class HellDog : Entity
     public HellDogChargeState ChargeState { get; private set; }
     public HellDogLookForPlayerState LookForPlayerState { get; private set; }
     public HellDogMeleeAttackState MeleeAttackState { get; private set; }
+    public HellDogStunState StunState { get; private set; }
+    public HellDogDeadState DeadState { get; private set; }
 
     [SerializeField] private IdleStateData idleStateData;
     [SerializeField] private MoveStateData moveStateData;
@@ -15,6 +17,8 @@ public class HellDog : Entity
     [SerializeField] private ChargeStateData chargeStateData;
     [SerializeField] private LookForPlayerStateData lookForPlayerStateData;
     [SerializeField] private MeleeAttackStateData meleeAttackStateData;
+    [SerializeField] private StunStateData stunStateData;
+    [SerializeField] private DeadStateData deadStateData;
 
     [SerializeField] private Transform meleeAttackPosition;
 
@@ -28,8 +32,24 @@ public class HellDog : Entity
         ChargeState = new HellDogChargeState(this, stateMachine, "charge", chargeStateData, this);
         LookForPlayerState = new HellDogLookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
         MeleeAttackState = new HellDogMeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        StunState = new HellDogStunState(this, stateMachine, "stun", stunStateData, this);
+        DeadState = new HellDogDeadState(this, stateMachine, "dead", deadStateData, this);
         
         stateMachine.Initialize(MoveState);
+    }
+
+    public override void Damage(AttackDetails attackDetails)
+    {
+        base.Damage(attackDetails);
+
+        if (_isDead)
+        {
+            stateMachine.ChangeState(DeadState);
+        }
+        else if (_isStunned && stateMachine.CurrentState != StunState)
+        {
+            stateMachine.ChangeState(StunState);
+        }
     }
 
     public override void OnDrawGizmos()
