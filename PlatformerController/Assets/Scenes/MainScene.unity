@@ -651,7 +651,10 @@ MonoBehaviour:
   lookForPlayerStateData: {fileID: 11400000, guid: f558ec345ad4eaf47bf3301d9085bfa4, type: 2}
   stunStateData: {fileID: 11400000, guid: fc2a62258044ff446beaf906f05718e5, type: 2}
   deadStateData: {fileID: 11400000, guid: ef3834e731e89444db358cfab7898f31, type: 2}
+  dodgeStateData: {fileID: 11400000, guid: f085ddf387aaf6b43a810e90f40f3865, type: 2}
+  rangedAttackStateData: {fileID: 11400000, guid: aea6ff198215fa64cbcbd9c014d016a4, type: 2}
   meleeAttackPosition: {fileID: 64101585}
+  rangedAttackPosition: {fileID: 721208214}
 --- !u!1 &644417623
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +693,7 @@ Transform:
   - {fileID: 1168173614}
   - {fileID: 1327473986}
   - {fileID: 64101585}
+  - {fileID: 721208214}
   m_Father: {fileID: 640131703}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -850,6 +854,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab96b38a80cd8b94f8145391a976b802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &721208213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 721208214}
+  m_Layer: 7
+  m_Name: Ranged Attack Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &721208214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721208213}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 644417624}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &908733560
 GameObject:
   m_ObjectHideFlags: 0

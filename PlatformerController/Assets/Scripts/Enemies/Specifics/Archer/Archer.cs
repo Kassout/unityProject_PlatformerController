@@ -9,7 +9,11 @@ public class Archer : Entity
     public ArcherLookForPlayerState LookForPlayerState { get; private set; }
     public ArcherStunState StunState { get; private set; }
     public ArcherDeadState DeadState { get; private set; }
+    public ArcherDodgeState DodgeState { get; private set; }
+    public ArcherRangedAttackState RangedAttackState { get; private set; }
 
+    public DodgeStateData DodgeStateData => dodgeStateData;
+    
     [SerializeField] private IdleStateData idleStateData;
     [SerializeField] private MoveStateData moveStateData;
     [SerializeField] private PlayerDetectedStateData playerDetectedStateData;
@@ -17,8 +21,11 @@ public class Archer : Entity
     [SerializeField] private LookForPlayerStateData lookForPlayerStateData;
     [SerializeField] private StunStateData stunStateData;
     [SerializeField] private DeadStateData deadStateData;
+    [SerializeField] private DodgeStateData dodgeStateData;
+    [SerializeField] private RangedAttackStateData rangedAttackStateData;
 
     [SerializeField] private Transform meleeAttackPosition;
+    [SerializeField] private Transform rangedAttackPosition;
     
     public override void Start()
     {
@@ -31,6 +38,9 @@ public class Archer : Entity
         LookForPlayerState = new ArcherLookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
         StunState = new ArcherStunState(this, stateMachine, "stun", stunStateData, this);
         DeadState = new ArcherDeadState(this, stateMachine, "dead", deadStateData, this);
+        DodgeState = new ArcherDodgeState(this, stateMachine, "dodge", dodgeStateData, this);
+        RangedAttackState =
+            new ArcherRangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
 
         stateMachine.Initialize(MoveState);
     }
@@ -46,6 +56,10 @@ public class Archer : Entity
         else if (_isStunned && stateMachine.CurrentState != StunState)
         {
             stateMachine.ChangeState(StunState);
+        }
+        else if (CheckPlayerInMinAggroRange())
+        {
+            stateMachine.ChangeState(RangedAttackState);
         }
         else if (!CheckPlayerInMinAggroRange())
         {

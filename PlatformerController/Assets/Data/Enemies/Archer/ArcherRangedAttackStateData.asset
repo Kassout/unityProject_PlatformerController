@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1d863742dc51604f93fa99d39eaac72, type: 3}
-  m_Name: ArcherPlayerDetectedStateData
+  m_Script: {fileID: 11500000, guid: b48fc0b6e6102b842a617895f6b3f3b0, type: 3}
+  m_Name: ArcherRangedAttackStateData
   m_EditorClassIdentifier: 
-  longRangeActionTime: 1
+  projectileDamage: 10
+  projectileSpeed: 12
+  projectileTravelDistance: 8
+  projectile: {fileID: 7056105516559969902, guid: 1794b45e2af4db041936d10ea63942db, type: 3}

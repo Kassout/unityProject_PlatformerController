@@ -45,6 +45,8 @@ public class Entity : MonoBehaviour
     {
         stateMachine.CurrentState.LogicUpdate();
 
+        Animator.SetFloat("yVelocity", Rigidbody.velocity.y);
+        
         if (Time.time >= _lastDamageTime + entityData.stunRecoveryTime)
         {
             ResetStunResistance();

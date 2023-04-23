@@ -2,12 +2,12 @@ using UnityEngine;
 
 public abstract class State
 {
-    protected float _startTime;
+    public float StartTime { get; private set; }
 
-    protected string _animationBoolName;
+    private readonly string _animationBoolName;
 
-    protected Entity _entity;
-    protected FiniteStateMachine _stateMachine;
+    protected readonly Entity _entity;
+    protected readonly FiniteStateMachine _stateMachine;
 
     protected State(Entity entity, FiniteStateMachine stateMachine, string animationBoolName)
     {
@@ -18,7 +18,7 @@ public abstract class State
 
     public virtual void Enter()
     {
-        _startTime = Time.time;
+        StartTime = Time.time;
         _entity.Animator.SetBool(_animationBoolName, true);
         DoChecks();
     }

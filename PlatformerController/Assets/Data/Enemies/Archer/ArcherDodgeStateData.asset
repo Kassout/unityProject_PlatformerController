@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1d863742dc51604f93fa99d39eaac72, type: 3}
-  m_Name: ArcherPlayerDetectedStateData
+  m_Script: {fileID: 11500000, guid: 70ce049384012e749a93033b01f39987, type: 3}
+  m_Name: ArcherDodgeStateData
   m_EditorClassIdentifier: 
-  longRangeActionTime: 1
+  dodgeSpeed: 20
+  dodgeTime: 0.2
+  dodgeCooldown: 2
+  dodgeAngle: {x: 1, y: 1}

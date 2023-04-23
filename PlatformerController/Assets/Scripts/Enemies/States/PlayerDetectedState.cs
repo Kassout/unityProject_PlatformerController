@@ -32,7 +32,7 @@ public class PlayerDetectedState : State
     {
         base.LogicUpdate();
 
-        if (Time.time >= _startTime + _stateData.longRangeActionTime)
+        if (Time.time >= StartTime + _stateData.longRangeActionTime)
         {
             _performLongRangeAction = true;
         }

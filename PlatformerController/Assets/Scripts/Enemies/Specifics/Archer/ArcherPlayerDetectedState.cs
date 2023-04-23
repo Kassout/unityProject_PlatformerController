@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class ArcherPlayerDetectedState : PlayerDetectedState
 {
     private Archer _archer;
@@ -25,7 +27,18 @@ public class ArcherPlayerDetectedState : PlayerDetectedState
 
         if (_performCloseRangeAction)
         {
-            _stateMachine.ChangeState(_archer.MeleeAttackState);
+            if (Time.time >= _archer.DodgeState.StartTime + _archer.DodgeStateData.dodgeCooldown)
+            {
+                _stateMachine.ChangeState(_archer.DodgeState);
+            }
+            else
+            {
+                _stateMachine.ChangeState(_archer.MeleeAttackState);
+            }
+        }
+        else if (_performLongRangeAction)
+        {
+            _stateMachine.ChangeState(_archer.RangedAttackState);
         }
         else if (!_isPlayerInMaxAggroRange)
         {
