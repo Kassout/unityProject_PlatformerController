@@ -7,6 +7,8 @@ public class PlayerInAirState : PlayerState
     private bool _coyoteTime;
     private bool _isJumping;
     private bool _jumpInputStop;
+    private bool _isTouchingWall;
+    private bool _grabInput;
     
     private int _xInput;
     
@@ -33,6 +35,7 @@ public class PlayerInAirState : PlayerState
         _xInput = _player.InputHandler.NormalizedInputX;
         _jumpInput = _player.InputHandler.JumpInput;
         _jumpInputStop = _player.InputHandler.JumpInputStop;
+        _grabInput = _player.InputHandler.GrabInput;
 
         CheckJumpMultiplier();
         
@@ -42,7 +45,16 @@ public class PlayerInAirState : PlayerState
         }
         else if (_jumpInput && _player.JumpState.CanJump())
         {
+            _player.InputHandler.UseJumpInput();
             _stateMachine.ChangeState(_player.JumpState);
+        }
+        else if (_isTouchingWall && _grabInput)
+        {
+            _stateMachine.ChangeState(_player.WallGrabState);
+        }
+        else if (_isTouchingWall && _xInput == _player.FacingDirection && _player.CurrentVelocity.y <= 0f)
+        {
+            _stateMachine.ChangeState(_player.WallSlideState);
         }
         else
         {
@@ -64,6 +76,7 @@ public class PlayerInAirState : PlayerState
         base.DoChecks();
 
         _isGrounded = _player.CheckIfGrounded();
+        _isTouchingWall = _player.ChechIfTouchingWall();
     }
 
     private void CheckJumpMultiplier()

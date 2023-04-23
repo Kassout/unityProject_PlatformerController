@@ -1,21 +1,19 @@
-public class PlayerGroundedState : PlayerState
+public class PlayerTouchingWallState : PlayerState
 {
+    protected bool _isGrounded;
+    protected bool _isTouchingWall;
+    protected bool _grabInput;
+    
     protected int _xInput;
-    
-    private bool _jumpInput;
-    private bool _isGrounded;
-    private bool _isTouchingWall;
-    private bool _grabInput;
-    
-    public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
+    protected int _yInput;
+
+    public PlayerTouchingWallState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
         string animationBoolName) 
         : base(player, stateMachine, playerData, animationBoolName) {}
 
     public override void Enter()
     {
         base.Enter();
-        
-        _player.JumpState.ResetAmountOfJumpsLeft();
     }
 
     public override void Exit()
@@ -28,22 +26,16 @@ public class PlayerGroundedState : PlayerState
         base.LogicUpdate();
 
         _xInput = _player.InputHandler.NormalizedInputX;
-        _jumpInput = _player.InputHandler.JumpInput;
+        _yInput = _player.InputHandler.NormalizedInputY;
         _grabInput = _player.InputHandler.GrabInput;
 
-        if (_jumpInput && _player.JumpState.CanJump())
+        if (_isGrounded && !_grabInput)
         {
-            _player.InputHandler.UseJumpInput();
-            _stateMachine.ChangeState(_player.JumpState);
+            _stateMachine.ChangeState(_player.IdleState);
         }
-        else if (!_isGrounded)
+        else if (!_isTouchingWall || (_xInput != _player.FacingDirection && !_grabInput))
         {
-            _player.InAirState.StartCoyoteTime();
             _stateMachine.ChangeState(_player.InAirState);
-        }
-        else if (_isTouchingWall && _grabInput)
-        {
-            _stateMachine.ChangeState(_player.WallGrabState);
         }
     }
 
@@ -58,5 +50,15 @@ public class PlayerGroundedState : PlayerState
 
         _isGrounded = _player.CheckIfGrounded();
         _isTouchingWall = _player.ChechIfTouchingWall();
+    }
+
+    public override void AnimationTrigger()
+    {
+        base.AnimationTrigger();
+    }
+
+    public override void AnimationFinishTrigger()
+    {
+        base.AnimationFinishTrigger();
     }
 }
