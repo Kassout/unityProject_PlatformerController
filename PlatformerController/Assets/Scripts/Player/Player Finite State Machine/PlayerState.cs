@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerState
 {
+    protected bool _isAnimationFinished;
+    
     protected float _startTime;
     
     protected Player _player;
@@ -23,6 +25,7 @@ public class PlayerState
         DoChecks();
         _player.Animator.SetBool(_animationBoolName, true);
         _startTime = Time.time;
+        _isAnimationFinished = false;
     }
 
     public virtual void Exit()
@@ -30,18 +33,16 @@ public class PlayerState
         _player.Animator.SetBool(_animationBoolName, false);
     }
 
-    public virtual void LogicUpdate()
-    {
-        
-    }
+    public virtual void LogicUpdate() {}
 
     public virtual void PhysicsUpdate()
     {
         DoChecks();
     }
 
-    public virtual void DoChecks()
-    {
-        
-    }
+    public virtual void DoChecks() {}
+
+    public virtual void AnimationTrigger() {}
+
+    public virtual void AnimationFinishTrigger() => _isAnimationFinished = true;
 }
