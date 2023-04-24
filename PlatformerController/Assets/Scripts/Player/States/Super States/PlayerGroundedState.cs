@@ -56,6 +56,6 @@ public class PlayerGroundedState : PlayerState
         base.DoChecks();
 
         _isGrounded = _player.CheckIfGrounded();
-        _isTouchingWall = _player.ChechIfTouchingWall();
+        _isTouchingWall = _player.CheckIfTouchingWall();
     }
 }
