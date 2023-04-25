@@ -5,6 +5,7 @@ public class PlayerLedgeClimbState : PlayerState
     private bool _isHanging;
     private bool _isClimbing;
     private bool _jumpInput;
+    private bool _isTouchingCeiling;
 
     private int _xInput;
     private int _yInput;
@@ -17,8 +18,6 @@ public class PlayerLedgeClimbState : PlayerState
     public PlayerLedgeClimbState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
         string animationBoolName) 
         : base(player, stateMachine, playerData, animationBoolName) {}
-
-    public void SetDetectedPosition(Vector2 position) => _detectedPosition = position;
 
     public override void Enter()
     {
@@ -53,7 +52,14 @@ public class PlayerLedgeClimbState : PlayerState
 
         if (_isAnimationFinished)
         {
-            _stateMachine.ChangeState(_player.IdleState);
+            if (_isTouchingCeiling)
+            {
+                _stateMachine.ChangeState(_player.CrouchIdleState);
+            }
+            else
+            {
+                _stateMachine.ChangeState(_player.IdleState);   
+            }
         }
         else
         {
@@ -66,6 +72,7 @@ public class PlayerLedgeClimbState : PlayerState
 
             if (_xInput == _player.FacingDirection && _isHanging && !_isClimbing)
             {
+                CheckForSpace();
                 _isClimbing = true;
                 _player.Animator.SetBool("ledgeClimb", true);
             
@@ -94,5 +101,15 @@ public class PlayerLedgeClimbState : PlayerState
         base.AnimationFinishTrigger();
         
         _player.Animator.SetBool("ledgeClimb", false);
+    }
+    
+    public void SetDetectedPosition(Vector2 position) => _detectedPosition = position;
+
+    private void CheckForSpace()
+    {
+        _isTouchingCeiling = Physics2D.Raycast(_cornerPosition + Vector2.up * 0.015f + Vector2.right * _player.FacingDirection * 0.015f,
+                Vector2.up, _playerData.standColliderHeight, _playerData.whatIsGround);
+        
+        _player.Animator.SetBool("isTouchingCeiling", _isTouchingCeiling);
     }
 }
