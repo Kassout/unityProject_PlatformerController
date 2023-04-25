@@ -2,6 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum CombatInputs
+{
+    Primary,
+    Secondary
+}
+
 public class PlayerInputHandler : MonoBehaviour
 {
     public bool JumpInput { get; private set; }
@@ -9,6 +15,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool GrabInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
+    
+    public bool[] AttackInputs { get; private set; }
     
     public int NormalizedInputX { get; private set; }
     public int NormalizedInputY { get; private set; }
@@ -29,6 +37,9 @@ public class PlayerInputHandler : MonoBehaviour
     {
         _playerInput = GetComponent<PlayerInput>();
         _camera = Camera.main;
+
+        int count = Enum.GetValues(typeof(CombatInputs)).Length;
+        AttackInputs = new bool[count];
     }
 
     private void Update()
@@ -41,23 +52,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         RawMovementInput = context.ReadValue<Vector2>();
 
-        if (Mathf.Abs(RawMovementInput.x) > 0.5f)
-        {
-            NormalizedInputX = (int)(RawMovementInput * Vector2.right).normalized.x;
-        }
-        else
-        {
-            NormalizedInputX = 0;
-        }
-
-        if (Mathf.Abs(RawMovementInput.y) > 0.5f)
-        {
-            NormalizedInputY = (int)(RawMovementInput * Vector2.up).normalized.y;
-        }
-        else
-        {
-            NormalizedInputY = 0;
-        }
+        NormalizedInputX = Mathf.RoundToInt(RawMovementInput.x);
+        NormalizedInputY = Mathf.RoundToInt(RawMovementInput.y);
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -112,6 +108,32 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
+    }
+
+    public void OnPrimaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.Primary] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.Primary] = false;
+        }
+    }
+
+    public void OnSecondaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.Secondary] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.Secondary] = false;
+        }
     }
 
     public void UseJumpInput() => JumpInput = false;
