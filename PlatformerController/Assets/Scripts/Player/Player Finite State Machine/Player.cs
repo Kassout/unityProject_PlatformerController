@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public PlayerWallClimbState WallClimbState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
     
     #endregion
     
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     public Animator Animator { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D Rigidbody { get; private set; }
+    public Transform DashDirectionIndicator { get; private set; }
 
     #endregion
 
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
         WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
+        DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
     }
 
     private void Start()
@@ -69,6 +72,7 @@ public class Player : MonoBehaviour
         Animator = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
         Rigidbody = GetComponent<Rigidbody2D>();
+        DashDirectionIndicator = transform.Find("Dash Direction Indicator");
 
         FacingDirection = 1;
         
@@ -101,6 +105,13 @@ public class Player : MonoBehaviour
     {
         angle.Normalize();
         _rigidbodyWorkspace.Set(angle.x * velocity * direction, angle.y * velocity);
+        Rigidbody.velocity = _rigidbodyWorkspace;
+        CurrentVelocity = _rigidbodyWorkspace;
+    }
+
+    public void SetVelocity(float velocity, Vector2 direction)
+    {
+        _rigidbodyWorkspace = direction * velocity;
         Rigidbody.velocity = _rigidbodyWorkspace;
         CurrentVelocity = _rigidbodyWorkspace;
     }

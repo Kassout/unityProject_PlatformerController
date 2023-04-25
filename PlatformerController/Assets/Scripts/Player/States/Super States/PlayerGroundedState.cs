@@ -6,6 +6,8 @@ public class PlayerGroundedState : PlayerState
     private bool _isGrounded;
     private bool _isTouchingWall;
     private bool _grabInput;
+    private bool _isTouchingLedge;
+    private bool _dashInput;
     
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
         string animationBoolName) 
@@ -16,6 +18,7 @@ public class PlayerGroundedState : PlayerState
         base.Enter();
         
         _player.JumpState.ResetAmountOfJumpsLeft();
+        _player.DashState.ResetCanDash();
     }
 
     public override void Exit()
@@ -30,6 +33,7 @@ public class PlayerGroundedState : PlayerState
         _xInput = _player.InputHandler.NormalizedInputX;
         _jumpInput = _player.InputHandler.JumpInput;
         _grabInput = _player.InputHandler.GrabInput;
+        _dashInput = _player.InputHandler.DashInput;
 
         if (_jumpInput && _player.JumpState.CanJump())
         {
@@ -40,9 +44,13 @@ public class PlayerGroundedState : PlayerState
             _player.InAirState.StartCoyoteTime();
             _stateMachine.ChangeState(_player.InAirState);
         }
-        else if (_isTouchingWall && _grabInput)
+        else if (_isTouchingWall && _grabInput && _isTouchingLedge)
         {
             _stateMachine.ChangeState(_player.WallGrabState);
+        }
+        else if (_dashInput && _player.DashState.CheckIfCanDash())
+        {
+            _stateMachine.ChangeState(_player.DashState);
         }
     }
 
@@ -57,5 +65,6 @@ public class PlayerGroundedState : PlayerState
 
         _isGrounded = _player.CheckIfGrounded();
         _isTouchingWall = _player.CheckIfTouchingWall();
+        _isTouchingLedge = _player.CheckIfTouchingLedge();
     }
 }
