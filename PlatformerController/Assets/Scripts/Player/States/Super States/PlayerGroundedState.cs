@@ -75,9 +75,9 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
 
-        _isGrounded = _player.CheckIfGrounded();
-        _isTouchingWall = _player.CheckIfTouchingWall();
-        _isTouchingLedge = _player.CheckIfTouchingLedge();
-        _isTouchingCeiling = _player.CheckForCeiling();
+        _isGrounded = _core.CollisionSenses.Ground;
+        _isTouchingWall = _core.CollisionSenses.WallFront;
+        _isTouchingLedge = _core.CollisionSenses.Ledge;
+        _isTouchingCeiling = _core.CollisionSenses.Ceiling;
     }
 }

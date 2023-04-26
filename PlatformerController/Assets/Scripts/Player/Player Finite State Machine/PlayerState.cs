@@ -6,7 +6,8 @@ public class PlayerState
     protected bool _isExitingState;
     
     protected float _startTime;
-    
+
+    protected Core _core;
     protected Player _player;
     protected PlayerStateMachine _stateMachine;
     protected PlayerData _playerData;
@@ -19,6 +20,7 @@ public class PlayerState
         _stateMachine = stateMachine;
         _playerData = playerData;
         _animationBoolName = animationBoolName;
+        _core = player.Core;
     }
 
     public virtual void Enter()

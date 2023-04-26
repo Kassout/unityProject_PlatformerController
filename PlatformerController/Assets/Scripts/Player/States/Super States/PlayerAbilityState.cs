@@ -26,7 +26,7 @@ public class PlayerAbilityState : PlayerState
 
         if (_isAbilityDone)
         {
-            if (_isGrounded && _player.CurrentVelocity.y < 0.01f)
+            if (_isGrounded && _core.Movement.CurrentVelocity.y < 0.01f)
             {
                 _stateMachine.ChangeState(_player.IdleState);
             }
@@ -46,6 +46,6 @@ public class PlayerAbilityState : PlayerState
     {
         base.DoChecks();
 
-        _isGrounded = _player.CheckIfGrounded();
+        _isGrounded = _core.CollisionSenses.Ground;
     }
 }
