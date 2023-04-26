@@ -51666,3 +51666,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ac310ac6013bc478453b297ec2bed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticles: {fileID: 387398596249232441, guid: d8f269dcfc08d7e4db334849611adf02, type: 3}
