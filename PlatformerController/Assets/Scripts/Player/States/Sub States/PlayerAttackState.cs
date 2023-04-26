@@ -1,7 +1,14 @@
 public class PlayerAttackState : PlayerAbilityState
 {
-    private Weapon _weapon;
+    private bool _setVelocity;
+    private bool _shouldCheckFlip;
+
+    private int _xInput;
     
+    private float _velocityToSet;
+
+    private Weapon _weapon;
+
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
         string animationBoolName) 
         : base(player, stateMachine, playerData, animationBoolName) {}
@@ -9,6 +16,8 @@ public class PlayerAttackState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
+
+        _setVelocity = false;
         
         _weapon.EnterWeapon();
     }
@@ -20,10 +29,40 @@ public class PlayerAttackState : PlayerAbilityState
         _weapon.ExitWeapon();
     }
 
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        _xInput = _player.InputHandler.NormalizedInputX;
+
+        if (_shouldCheckFlip)
+        {
+            _player.CheckIfShouldFlip(_xInput);   
+        }
+
+        if (_setVelocity)
+        {
+            _player.SetVelocityX(_velocityToSet * _player.FacingDirection);
+        }
+    }
+
     public void SetWeapon(Weapon weapon)
     {
         _weapon = weapon;
         _weapon.InitializeWeapon(this);
+    }
+
+    public void SetPlayerVelocity(float velocity)
+    {
+        _player.SetVelocityX(velocity * _player.FacingDirection);
+
+        _velocityToSet = velocity;
+        _setVelocity = true;
+    }
+
+    public void SetFlipCheck(bool value)
+    {
+        _shouldCheckFlip = value;
     }
 
     #region Animation Triggers
