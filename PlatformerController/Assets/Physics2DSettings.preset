@@ -178,15 +178,15 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[0]
-    value: 4294967295
+    value: 4294966271
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[1]
-    value: 4294967295
+    value: 4294966271
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[2]
-    value: 4294967295
+    value: 4294966271
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[3]
@@ -194,15 +194,15 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[4]
-    value: 4294967295
+    value: 4294966271
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[5]
-    value: 4294967295
+    value: 4294966271
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[6]
-    value: 4294967295
+    value: 4294966271
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[7]
@@ -210,15 +210,15 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[8]
-    value: 4294966399
+    value: 4294965375
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[9]
-    value: 4294966911
+    value: 4294965887
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[10]
-    value: 4294967295
+    value: 4294965384
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LayerCollisionMatrix.Array.data[11]
