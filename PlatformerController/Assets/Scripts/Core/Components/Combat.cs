@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class Combat : CoreComponent, IDamageable, IKnockBackable
 {
+    [SerializeField] private GameObject damageParticles;
+    
     private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private Stats Stats => _stats ??= _core.GetCoreComponent<Stats>();
+    private ParticleManager ParticleManager => _particleManager ??= _core.GetCoreComponent<ParticleManager>();
 
     private Movement _movement;
     private CollisionSenses _collisionSenses;
     private Stats _stats;
+    private ParticleManager _particleManager;
     
     [SerializeField] private float maxKnockBackTime = 0.2f;
 
@@ -23,6 +27,7 @@ public class Combat : CoreComponent, IDamageable, IKnockBackable
     public void Damage(float amount)
     {
         Stats.DecreaseHealth(amount);
+        ParticleManager.StartParticlesWithRandomRotation(damageParticles);
     }
 
     public void KnockBack(Vector2 angle, float strength, int direction)
