@@ -10,6 +10,12 @@ public class PlayerDetectedState : State
     protected bool _performCloseRangeAction;
     protected bool _isDetectingLedge;
     
+    protected Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    protected Movement _movement;
+    
+    private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
+    private CollisionSenses _collisionSenses;
+    
     public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, PlayerDetectedStateData stateData) : base(entity, stateMachine, animationBoolName)
     {
         _stateData = stateData;
@@ -20,7 +26,7 @@ public class PlayerDetectedState : State
         base.Enter();
 
         _performLongRangeAction = false;
-        _core.Movement.SetVelocityX(0f);
+        Movement.SetVelocityX(0f);
     }
 
     public override void Exit()
@@ -50,6 +56,6 @@ public class PlayerDetectedState : State
         _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
         _isPlayerInMaxAggroRange = _entity.CheckPlayerInMaxAggroRange();
         _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
-        _isDetectingLedge = _core.CollisionSenses.LedgeVertical;
+        _isDetectingLedge = CollisionSenses.LedgeVertical;
     }
 }

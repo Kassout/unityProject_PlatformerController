@@ -10,6 +10,12 @@ public class StunState : State
     
     protected StunStateData _stateData;
     
+    private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    private Movement _movement;
+    
+    private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
+    private CollisionSenses _collisionSenses;
+    
     public StunState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, StunStateData stateData) 
         : base(entity, stateMachine, animationBoolName)
     {
@@ -22,7 +28,7 @@ public class StunState : State
 
         _isStunTimeOver = false;
         _isMovementStopped = false;
-        _core.Movement.SetVelocity(_stateData.stunKnockBackSpeed, _stateData.stunKnockBackAngle, _entity.LastDamageDirection);
+        Movement.SetVelocity(_stateData.stunKnockBackSpeed, _stateData.stunKnockBackAngle, _entity.LastDamageDirection);
     }
 
     public override void Exit()
@@ -43,7 +49,7 @@ public class StunState : State
         if (_isGrounded && Time.time >= StartTime + _stateData.stunKnockBackTime && !_isMovementStopped)
         {
             _isMovementStopped = true;
-            _core.Movement.SetVelocityX(0f);
+            Movement.SetVelocityX(0f);
         }
     }
 
@@ -56,7 +62,7 @@ public class StunState : State
     {
         base.DoChecks();
 
-        _isGrounded = _core.CollisionSenses.Ground;
+        _isGrounded = CollisionSenses.Ground;
         _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
         _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
     }

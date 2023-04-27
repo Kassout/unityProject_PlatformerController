@@ -6,6 +6,9 @@ public abstract class AttackState : State
     protected bool _isPlayerInMinAggroRange;
     
     protected Transform _attackPosition;
+    
+    private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    private Movement _movement;
 
     protected AttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName,
         Transform attackPosition)
@@ -21,7 +24,7 @@ public abstract class AttackState : State
         _entity.AnimationToStateMachine.attackState = this;
         _isAnimationFinished = false;
 
-        _core.Movement.SetVelocityX(0f);
+        Movement.SetVelocityX(0f);
     }
 
     public override void Exit()
@@ -33,7 +36,7 @@ public abstract class AttackState : State
     {
         base.LogicUpdate();
         
-        _core.Movement.SetVelocityX(0f);
+        Movement.SetVelocityX(0f);
     }
 
     public override void PhysicsUpdate()

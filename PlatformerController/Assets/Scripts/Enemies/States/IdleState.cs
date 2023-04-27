@@ -10,6 +10,9 @@ public class IdleState : State
     
     protected IdleStateData _stateData;
     
+    private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    private Movement _movement;
+    
     public IdleState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, IdleStateData stateData) 
         : base(entity, stateMachine, animationBoolName)
     {
@@ -20,7 +23,7 @@ public class IdleState : State
     {
         base.Enter();
 
-        _core.Movement.SetVelocityX(0f);
+        Movement.SetVelocityX(0f);
         _isIdleTimeOver = false;
         SetRandomIdleTime();
     }
@@ -31,7 +34,7 @@ public class IdleState : State
 
         if (_flipAfterIdle)
         {
-            _core.Movement.Flip();
+            Movement.Flip();
         }
     }
 
@@ -39,7 +42,7 @@ public class IdleState : State
     {
         base.LogicUpdate();
         
-        _core.Movement.SetVelocityX(0f);
+        Movement.SetVelocityX(0f);
 
         if (Time.time >= StartTime + _idleTime)
         {

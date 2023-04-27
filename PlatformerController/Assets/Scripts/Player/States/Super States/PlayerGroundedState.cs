@@ -4,6 +4,9 @@ public class PlayerGroundedState : PlayerState
     
     protected int _xInput;
     protected int _yInput;
+    
+    protected Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    protected Movement _movement;
 
     private bool _jumpInput;
     private bool _isGrounded;
@@ -11,10 +14,16 @@ public class PlayerGroundedState : PlayerState
     private bool _grabInput;
     private bool _isTouchingLedge;
     private bool _dashInput;
-    
-    public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+
+    private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
+    private CollisionSenses _collisionSenses;
+
+    public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData,
+        string animationBoolName)
+        : base(player, stateMachine, playerData, animationBoolName)
+    {
+        _collisionSenses = _core.GetCoreComponent<CollisionSenses>();
+    }
 
     public override void Enter()
     {
@@ -75,9 +84,12 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
 
-        _isGrounded = _core.CollisionSenses.Ground;
-        _isTouchingWall = _core.CollisionSenses.WallFront;
-        _isTouchingLedge = _core.CollisionSenses.LedgeHorizontal;
-        _isTouchingCeiling = _core.CollisionSenses.Ceiling;
+        if (CollisionSenses)
+        {
+            _isGrounded = CollisionSenses.Ground;
+            _isTouchingWall = CollisionSenses.WallFront;
+            _isTouchingLedge = CollisionSenses.LedgeHorizontal;
+            _isTouchingCeiling = CollisionSenses.Ceiling;
+        }
     }
 }

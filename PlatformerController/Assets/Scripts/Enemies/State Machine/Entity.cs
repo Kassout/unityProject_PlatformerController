@@ -24,6 +24,9 @@ public class Entity : MonoBehaviour
     private float _lastDamageTime;
     
     private Vector2 _velocityWorkspace;
+    
+    private Movement Movement => _movement ??= Core.GetCoreComponent<Movement>();
+    private Movement _movement;
 
     public virtual void Awake()
     {
@@ -43,7 +46,7 @@ public class Entity : MonoBehaviour
         Core.LogicUpdate();
         stateMachine.CurrentState.LogicUpdate();
 
-        Animator.SetFloat("yVelocity", Core.Movement.Rigidbody.velocity.y);
+        Animator.SetFloat("yVelocity", Movement.Rigidbody.velocity.y);
         
         if (Time.time >= _lastDamageTime + entityData.stunRecoveryTime)
         {
@@ -76,8 +79,8 @@ public class Entity : MonoBehaviour
 
     public virtual void DamageHop(float velocity)
     {
-        _velocityWorkspace.Set(Core.Movement.Rigidbody.velocity.x, velocity);
-        Core.Movement.Rigidbody.velocity = _velocityWorkspace;
+        _velocityWorkspace.Set(Movement.Rigidbody.velocity.x, velocity);
+        Movement.Rigidbody.velocity = _velocityWorkspace;
     }
 
     public virtual void ResetStunResistance()
@@ -90,7 +93,7 @@ public class Entity : MonoBehaviour
     {
         if (Core)
         {
-            Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.right * Core.Movement.FacingDirection * entityData.wallCheckDistance);
+            Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.right * Movement.FacingDirection * entityData.wallCheckDistance);
             Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + Vector3.down * entityData.ledgeCheckDistance);
         
             Gizmos.DrawWireSphere(playerCheck.position + Vector3.right * entityData.closeRangeActionDistance, 0.2f);

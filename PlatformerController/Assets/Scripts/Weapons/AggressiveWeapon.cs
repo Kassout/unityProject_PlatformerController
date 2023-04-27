@@ -8,6 +8,9 @@ public class AggressiveWeapon : Weapon
     private List<IKnockBackable> _detectedKnockBackable = new List<IKnockBackable>();
 
     protected AggressiveWeaponData _aggressiveWeaponData;
+    
+    private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    private Movement _movement;
 
     protected override void Awake()
     {
@@ -41,7 +44,7 @@ public class AggressiveWeapon : Weapon
 
         foreach (var knockBackable in _detectedKnockBackable.ToList())
         {
-            knockBackable.KnockBack(details.knockBackAngle, details.knockBackStrength, _core.Movement.FacingDirection);
+            knockBackable.KnockBack(details.knockBackAngle, details.knockBackStrength, Movement.FacingDirection);
         }
     }
 

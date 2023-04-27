@@ -4,6 +4,9 @@ public class MeleeAttackState : AttackState
 {
     protected MeleeAttackStateData _stateData;
     
+    private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    private Movement _movement;
+    
     public MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
         Transform attackPosition, MeleeAttackStateData stateData) 
         : base(entity, stateMachine, animationBoolName, attackPosition)
@@ -49,7 +52,7 @@ public class MeleeAttackState : AttackState
             damageable?.Damage(_stateData.attackDamage);
 
             IKnockBackable knockBackable = detectedObjects[i].GetComponent<IKnockBackable>();
-            knockBackable?.KnockBack(_stateData.knockBackAngle, _stateData.knockBackStrength, _core.Movement.FacingDirection);
+            knockBackable?.KnockBack(_stateData.knockBackAngle, _stateData.knockBackStrength, Movement.FacingDirection);
         }
     }
 }

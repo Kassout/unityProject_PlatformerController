@@ -1,8 +1,14 @@
 public class PlayerAbilityState : PlayerState
 {
     protected bool _isAbilityDone;
+    
+    protected Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    protected Movement _movement;
 
     private bool _isGrounded;
+    
+    private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
+    private CollisionSenses _collisionSenses;
     
     public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
         string animationBoolName) 
@@ -26,7 +32,7 @@ public class PlayerAbilityState : PlayerState
 
         if (_isAbilityDone)
         {
-            if (_isGrounded && _core.Movement.CurrentVelocity.y < 0.01f)
+            if (_isGrounded && Movement.CurrentVelocity.y < 0.01f)
             {
                 _stateMachine.ChangeState(_player.IdleState);
             }
@@ -46,6 +52,6 @@ public class PlayerAbilityState : PlayerState
     {
         base.DoChecks();
 
-        _isGrounded = _core.CollisionSenses.Ground;
+        _isGrounded = CollisionSenses.Ground;
     }
 }

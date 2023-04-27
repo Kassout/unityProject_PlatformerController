@@ -2,18 +2,18 @@ using UnityEngine;
 
 public abstract class CoreComponent : MonoBehaviour, ILogicUpdate
 {
-    protected Core core;
+    protected Core _core;
 
     protected virtual void Awake()
     {
-        core = transform.parent.GetComponent<Core>();
+        _core = transform.parent.GetComponent<Core>();
 
-        if (!core)
+        if (!_core)
         {
             Debug.LogError("There is no Core on the parent.");
         }
         
-        core.AddComponent(this);
+        _core.AddComponent(this);
     }
 
     public virtual void LogicUpdate() {}

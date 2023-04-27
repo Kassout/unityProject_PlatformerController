@@ -13,6 +13,9 @@ public class LookForPlayerState : State
     
     protected LookForPlayerStateData _stateData;
     
+    private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    private Movement _movement;
+    
     public LookForPlayerState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName,
         LookForPlayerStateData stateData) 
         : base(entity, stateMachine, animationBoolName)
@@ -30,7 +33,7 @@ public class LookForPlayerState : State
         _lastTurnTime = StartTime;
         _amountOfTurnsDone = 0;
 
-        _core.Movement.SetVelocityX(0f);
+        Movement.SetVelocityX(0f);
     }
 
     public override void Exit()
@@ -42,18 +45,18 @@ public class LookForPlayerState : State
     {
         base.LogicUpdate();
 
-        _core.Movement.SetVelocityX(0f);
+        Movement.SetVelocityX(0f);
         
         if (_turnImmediately)
         {
-            _core.Movement.Flip();
+            Movement.Flip();
             _lastTurnTime = Time.time;
             _amountOfTurnsDone++;
             _turnImmediately = false;
         }
         else if (Time.time >= _lastTurnTime + _stateData.timeBetweenTurns && !_isAllTurnsDone)
         {
-            _core.Movement.Flip();
+            Movement.Flip();
             _lastTurnTime = Time.time;
             _amountOfTurnsDone++;
         }

@@ -6,6 +6,12 @@ public class MoveState : State
     
     protected MoveStateData _stateData;
     
+    private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    private Movement _movement;
+    
+    private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
+    private CollisionSenses _collisionSenses;
+    
     public MoveState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, MoveStateData stateData) 
         : base(entity, stateMachine, animationBoolName)
     {
@@ -15,7 +21,7 @@ public class MoveState : State
     public override void Enter()
     {
         base.Enter();
-        _core.Movement.SetVelocityX(_stateData.movementSpeed * _core.Movement.FacingDirection);
+        Movement.SetVelocityX(_stateData.movementSpeed * Movement.FacingDirection);
     }
 
     public override void Exit()
@@ -27,7 +33,7 @@ public class MoveState : State
     {
         base.LogicUpdate();
         
-        _core.Movement.SetVelocityX(_stateData.movementSpeed * _core.Movement.FacingDirection);
+        Movement.SetVelocityX(_stateData.movementSpeed * Movement.FacingDirection);
     }
 
     public override void PhysicsUpdate()
@@ -39,8 +45,8 @@ public class MoveState : State
     {
         base.DoChecks();
 
-        _isDetectingLedge = _core.CollisionSenses.LedgeVertical;
-        _isDetectingWall = _core.CollisionSenses.WallFront;
+        _isDetectingLedge = CollisionSenses.LedgeVertical;
+        _isDetectingWall = CollisionSenses.WallFront;
         _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
     }
 }

@@ -10,6 +10,12 @@ public class ChargeState : State
     
     protected ChargeStateData _stateData;
     
+    private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
+    private Movement _movement;
+    
+    private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
+    private CollisionSenses _collisionSenses;
+    
     public ChargeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, ChargeStateData stateData) : base(entity, stateMachine, animationBoolName)
     {
         _stateData = stateData;
@@ -20,7 +26,7 @@ public class ChargeState : State
         base.Enter();
 
         _isChargeTimeOver = false;
-        _core.Movement.SetVelocityX(_stateData.chargeSpeed * _core.Movement.FacingDirection);
+        Movement.SetVelocityX(_stateData.chargeSpeed * Movement.FacingDirection);
     }
 
     public override void Exit()
@@ -32,7 +38,7 @@ public class ChargeState : State
     {
         base.LogicUpdate();
 
-        _core.Movement.SetVelocityX(_stateData.chargeSpeed * _core.Movement.FacingDirection);
+        Movement.SetVelocityX(_stateData.chargeSpeed * Movement.FacingDirection);
 
         if (Time.time >= StartTime + _stateData.chargeTime)
         {
@@ -50,8 +56,8 @@ public class ChargeState : State
         base.DoChecks();
         
         _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
-        _isDetectingLedge = _core.CollisionSenses.LedgeVertical;
-        _isDetectingWall = _core.CollisionSenses.WallFront;
+        _isDetectingLedge = CollisionSenses.LedgeVertical;
+        _isDetectingWall = CollisionSenses.WallFront;
         _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
     }
 }
