@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class Combat : CoreComponent, IDamageable, IKnockBackable
 {
+    [SerializeField] private float maxKnockBackTime = 0.2f;
+
     private bool _isKnockBackActive;
     private float _knockBackStartTime;
 
-    public void LogicUpdate()
+    public override void LogicUpdate()
     {
         CheckKnockBack();
     }
     
-    public void Damage(float damage)
+    public void Damage(float amount)
     {
-        Debug.Log(core.transform.parent.name + " got hit.");
+        core.Stats.DecreaseHealth(amount);
     }
 
     public void KnockBack(Vector2 angle, float strength, int direction)
@@ -25,7 +27,7 @@ public class Combat : CoreComponent, IDamageable, IKnockBackable
 
     private void CheckKnockBack()
     {
-        if (_isKnockBackActive && core.Movement.CurrentVelocity.y <= 0.01f && core.CollisionSenses.Ground)
+        if (_isKnockBackActive && ((core.Movement.CurrentVelocity.y <= 0.01f && core.CollisionSenses.Ground) || Time.time >= _knockBackStartTime + maxKnockBackTime))
         {
             _isKnockBackActive = false;
             core.Movement.CanSetVelocity = true;

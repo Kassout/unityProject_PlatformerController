@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CoreComponent : MonoBehaviour
+public abstract class CoreComponent : MonoBehaviour, ILogicUpdate
 {
     protected Core core;
 
@@ -12,5 +12,9 @@ public class CoreComponent : MonoBehaviour
         {
             Debug.LogError("There is no Core on the parent.");
         }
+        
+        core.AddComponent(this);
     }
+
+    public virtual void LogicUpdate() {}
 }
