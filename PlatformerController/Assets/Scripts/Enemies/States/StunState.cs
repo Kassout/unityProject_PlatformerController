@@ -22,7 +22,7 @@ public class StunState : State
 
         _isStunTimeOver = false;
         _isMovementStopped = false;
-        _entity.SetVelocity(_stateData.stunKnockBackSpeed, _stateData.stunKnockBackAngle, _entity.LastDamageDirection);
+        _core.Movement.SetVelocity(_stateData.stunKnockBackSpeed, _stateData.stunKnockBackAngle, _entity.LastDamageDirection);
     }
 
     public override void Exit()
@@ -43,7 +43,7 @@ public class StunState : State
         if (_isGrounded && Time.time >= StartTime + _stateData.stunKnockBackTime && !_isMovementStopped)
         {
             _isMovementStopped = true;
-            _entity.SetVelocity(0f);
+            _core.Movement.SetVelocityX(0f);
         }
     }
 
@@ -56,7 +56,7 @@ public class StunState : State
     {
         base.DoChecks();
 
-        _isGrounded = _entity.CheckGround();
+        _isGrounded = _core.CollisionSenses.Ground;
         _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
         _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
     }

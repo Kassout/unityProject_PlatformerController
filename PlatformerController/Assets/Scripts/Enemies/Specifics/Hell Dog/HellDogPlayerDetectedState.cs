@@ -37,7 +37,7 @@ public class HellDogPlayerDetectedState : PlayerDetectedState
         }
         else if (!_isDetectingLedge)
         {
-            _entity.Flip();
+            _core.Movement.Flip();
             _stateMachine.ChangeState(_hellDog.MoveState);
         }
     }

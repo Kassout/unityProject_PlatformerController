@@ -22,9 +22,9 @@ public class HellDog : Entity
 
     [SerializeField] private Transform meleeAttackPosition;
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
 
         MoveState = new HellDogMoveState(this, stateMachine, "move", moveStateData, this);
         IdleState = new HellDogIdleState(this, stateMachine, "idle", idleStateData, this);

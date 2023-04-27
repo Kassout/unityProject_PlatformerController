@@ -59,7 +59,7 @@ public class Movement : CoreComponent
         CurrentVelocity = _workspace;
     }
     
-    private void Flip()
+    public void Flip()
     {
         FacingDirection *= -1;
         Rigidbody.transform.Rotate(0f, 180f, 0f);

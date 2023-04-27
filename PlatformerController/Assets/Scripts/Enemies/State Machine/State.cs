@@ -6,6 +6,7 @@ public abstract class State
 
     private readonly string _animationBoolName;
 
+    protected readonly Core _core;
     protected readonly Entity _entity;
     protected readonly FiniteStateMachine _stateMachine;
 
@@ -14,6 +15,7 @@ public abstract class State
         _entity = entity;
         _stateMachine = stateMachine;
         _animationBoolName = animationBoolName;
+        _core = entity.Core;
     }
 
     public virtual void Enter()

@@ -20,7 +20,7 @@ public class PlayerDetectedState : State
         base.Enter();
 
         _performLongRangeAction = false;
-        _entity.SetVelocity(0f);
+        _core.Movement.SetVelocityX(0f);
     }
 
     public override void Exit()
@@ -50,6 +50,6 @@ public class PlayerDetectedState : State
         _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
         _isPlayerInMaxAggroRange = _entity.CheckPlayerInMaxAggroRange();
         _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
-        _isDetectingLedge = _entity.CheckLedge();
+        _isDetectingLedge = _core.CollisionSenses.LedgeVertical;
     }
 }

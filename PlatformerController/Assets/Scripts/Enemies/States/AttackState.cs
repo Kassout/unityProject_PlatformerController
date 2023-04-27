@@ -21,7 +21,7 @@ public abstract class AttackState : State
         _entity.AnimationToStateMachine.attackState = this;
         _isAnimationFinished = false;
 
-        _entity.SetVelocity(0f);
+        _core.Movement.SetVelocityX(0f);
     }
 
     public override void Exit()

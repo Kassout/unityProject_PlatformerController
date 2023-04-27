@@ -27,9 +27,9 @@ public class Archer : Entity
     [SerializeField] private Transform meleeAttackPosition;
     [SerializeField] private Transform rangedAttackPosition;
     
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();        
+        base.Awake();        
         
         MoveState = new ArcherMoveState(this, stateMachine, "move", moveStateData, this);
         IdleState = new ArcherIdleState(this, stateMachine, "idle", idleStateData, this);

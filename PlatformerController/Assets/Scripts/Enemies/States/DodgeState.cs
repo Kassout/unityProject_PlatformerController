@@ -21,7 +21,7 @@ public class DodgeState : State
 
         _isDodgeOver = false;
         
-        _entity.SetVelocity(_stateData.dodgeSpeed, _stateData.dodgeAngle, -_entity.FacingDirection);
+        _core.Movement.SetVelocity(_stateData.dodgeSpeed, _stateData.dodgeAngle, -_core.Movement.FacingDirection);
     }
 
     public override void Exit()
@@ -50,6 +50,6 @@ public class DodgeState : State
 
         _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
         _isPlayerInMaxAggroRange = _entity.CheckPlayerInMaxAggroRange();
-        _isGrounded = _entity.CheckGround();
+        _isGrounded = _core.CollisionSenses.Ground;
     }
 }
