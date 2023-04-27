@@ -6,9 +6,9 @@ public class Weapon : MonoBehaviour
     
     protected int _attackCounter;
     
+    protected Core _core;
     protected Animator _baseAnimator;
     protected Animator _weaponAnimator;
-
     protected PlayerAttackState _state;
 
     protected virtual void Awake()
@@ -19,9 +19,10 @@ public class Weapon : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void InitializeWeapon(PlayerAttackState state)
+    public void InitializeWeapon(PlayerAttackState state, Core core)
     {
         _state = state;
+        _core = core;
     }
 
     public virtual void EnterWeapon()

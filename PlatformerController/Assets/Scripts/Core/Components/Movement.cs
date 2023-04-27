@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Movement : CoreComponent
 {
+    public bool CanSetVelocity { get; set; }
+    
     public int FacingDirection { get; private set; }
     
     public Vector2 CurrentVelocity { get; private set; }
@@ -17,6 +19,7 @@ public class Movement : CoreComponent
         Rigidbody = GetComponentInParent<Rigidbody2D>();
         
         FacingDirection = 1;
+        CanSetVelocity = true;
     }
 
     public void LogicUpdate()
@@ -26,37 +29,42 @@ public class Movement : CoreComponent
 
     public void SetVelocityZero()
     {
-        Rigidbody.velocity = Vector2.zero;
-        CurrentVelocity = Vector2.zero;
+        _workspace = Vector2.zero;
+        SetFinalVelocity();
     }
     
     public void SetVelocity(float velocity, Vector2 angle, int direction)
     {
         angle.Normalize();
         _workspace.Set(angle.x * velocity * direction, angle.y * velocity);
-        Rigidbody.velocity = _workspace;
-        CurrentVelocity = _workspace;
+        SetFinalVelocity();
     }
 
     public void SetVelocity(float velocity, Vector2 direction)
     {
         _workspace = direction * velocity;
-        Rigidbody.velocity = _workspace;
-        CurrentVelocity = _workspace;
+        SetFinalVelocity();
     }
     
     public void SetVelocityX(float velocity)
     {
         _workspace.Set(velocity, CurrentVelocity.y);
-        Rigidbody.velocity = _workspace;
-        CurrentVelocity = _workspace;
+        SetFinalVelocity();
     }
 
     public void SetVelocityY(float velocity)
     {
         _workspace.Set(CurrentVelocity.x, velocity);
-        Rigidbody.velocity = _workspace;
-        CurrentVelocity = _workspace;
+        SetFinalVelocity();
+    }
+
+    private void SetFinalVelocity()
+    {
+        if (CanSetVelocity)
+        {
+            Rigidbody.velocity = _workspace;
+            CurrentVelocity = _workspace;
+        }
     }
     
     public void Flip()

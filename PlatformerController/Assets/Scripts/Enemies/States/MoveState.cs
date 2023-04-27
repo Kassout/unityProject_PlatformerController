@@ -26,6 +26,8 @@ public class MoveState : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        
+        _core.Movement.SetVelocityX(_stateData.movementSpeed * _core.Movement.FacingDirection);
     }
 
     public override void PhysicsUpdate()

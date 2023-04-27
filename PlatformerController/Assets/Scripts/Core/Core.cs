@@ -2,53 +2,38 @@ using UnityEngine;
 
 public class Core : MonoBehaviour
 {
-    public Movement Movement {
-        get
-        {
-            if (_movement != null)
-            {
-                return _movement;
-            }
-            
-            Debug.LogError("No Movement Core Component on " + transform.parent.name);
-            return null;
-        }
-        
-        private set { _movement = value; }
+    public Movement Movement
+    {
+        get => GenericNotImplementedError<Movement>.TryGet(_movement, transform.parent.name);
+        private set => _movement = value;
     }
 
     public CollisionSenses CollisionSenses
     {
-        get
-        {
-            if (_collisionSenses != null)
-            {
-                return _collisionSenses;
-            }
-            
-            Debug.LogError("No Collision Senses Core Component on " + transform.parent.name);
-            return null;
-        }
-        
-        private set { _collisionSenses = value; }
+        get => GenericNotImplementedError<CollisionSenses>.TryGet(_collisionSenses, transform.parent.name);
+        private set => _collisionSenses = value;
+    }
+
+    public Combat Combat
+    {
+        get => GenericNotImplementedError<Combat>.TryGet(_combat, transform.parent.name);
+        private set => _combat = value;
     }
 
     private Movement _movement;
     private CollisionSenses _collisionSenses;
+    private Combat _combat;
 
     private void Awake()
     {
         _movement = GetComponentInChildren<Movement>();
         _collisionSenses = GetComponentInChildren<CollisionSenses>();
-
-        if (!Movement || !CollisionSenses)
-        {
-            Debug.LogError("Missing Core Component.");
-        }
+        _combat = GetComponentInChildren<Combat>();
     }
 
     public void LogicUpdate()
     {
         Movement.LogicUpdate();
+        Combat.LogicUpdate();
     }
 }

@@ -32,6 +32,7 @@ public class ChargeState : State
     {
         base.LogicUpdate();
 
+        _core.Movement.SetVelocityX(_stateData.chargeSpeed * _core.Movement.FacingDirection);
 
         if (Time.time >= StartTime + _stateData.chargeTime)
         {

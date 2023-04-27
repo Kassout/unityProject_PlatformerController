@@ -5,6 +5,7 @@ using UnityEngine;
 public class AggressiveWeapon : Weapon
 {
     private readonly List<IDamageable> _detectedDamageable = new List<IDamageable>();
+    private List<IKnockBackable> _detectedKnockBackable = new List<IKnockBackable>();
 
     protected AggressiveWeaponData _aggressiveWeaponData;
 
@@ -37,6 +38,11 @@ public class AggressiveWeapon : Weapon
         {
             damageable.Damage(details.damageAmount);
         }
+
+        foreach (var knockBackable in _detectedKnockBackable.ToList())
+        {
+            knockBackable.KnockBack(details.knockBackAngle, details.knockBackStrength, _core.Movement.FacingDirection);
+        }
     }
 
     public void AddToDetected(Collider2D collision)
@@ -47,6 +53,13 @@ public class AggressiveWeapon : Weapon
         {
             _detectedDamageable.Add(damageable);
         }
+
+        IKnockBackable knockBackable = collision.GetComponentInChildren<IKnockBackable>();
+
+        if (knockBackable != null)
+        {
+            _detectedKnockBackable.Add(knockBackable);
+        }
     }
 
     public void RemoveFromDetected(Collider2D collision)
@@ -56,6 +69,13 @@ public class AggressiveWeapon : Weapon
         if (damageable != null)
         {
             _detectedDamageable.Remove(damageable);
+        }
+        
+        IKnockBackable knockBackable = collision.GetComponentInChildren<IKnockBackable>();
+
+        if (knockBackable != null)
+        {
+            _detectedKnockBackable.Remove(knockBackable);
         }
     }
 }

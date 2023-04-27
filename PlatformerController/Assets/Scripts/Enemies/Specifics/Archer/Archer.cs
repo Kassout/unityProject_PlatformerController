@@ -41,31 +41,11 @@ public class Archer : Entity
         DodgeState = new ArcherDodgeState(this, stateMachine, "dodge", dodgeStateData, this);
         RangedAttackState =
             new ArcherRangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
-
-        stateMachine.Initialize(MoveState);
     }
 
-    public override void Damage(AttackDetails attackDetails)
+    private void Start()
     {
-        base.Damage(attackDetails);
-
-        if (_isDead)
-        {
-            stateMachine.ChangeState(DeadState);
-        }
-        else if (_isStunned && stateMachine.CurrentState != StunState)
-        {
-            stateMachine.ChangeState(StunState);
-        }
-        else if (CheckPlayerInMinAggroRange())
-        {
-            stateMachine.ChangeState(RangedAttackState);
-        }
-        else if (!CheckPlayerInMinAggroRange())
-        {
-            LookForPlayerState.SetTurnImmediately(true);
-            stateMachine.ChangeState(LookForPlayerState);
-        }
+        stateMachine.Initialize(MoveState);
     }
 
     public override void OnDrawGizmos()

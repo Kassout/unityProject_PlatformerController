@@ -49,7 +49,7 @@ public class PlayerAttackState : PlayerAbilityState
     public void SetWeapon(Weapon weapon)
     {
         _weapon = weapon;
-        _weapon.InitializeWeapon(this);
+        _weapon.InitializeWeapon(this, _core);
     }
 
     public void SetPlayerVelocity(float velocity)

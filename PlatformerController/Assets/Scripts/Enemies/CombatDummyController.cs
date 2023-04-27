@@ -20,8 +20,6 @@ public class CombatDummyController : MonoBehaviour
     private float _currentHealth;
     private float _knockBackStart;
 
-    private PlayerController _playerController;
-
     private GameObject _aliveGameObject;
     private GameObject _brokenTopGameObject;
     private GameObject _brokenBottomGameObject;
@@ -35,8 +33,6 @@ public class CombatDummyController : MonoBehaviour
     private void Start()
     {
         _currentHealth = maxHealth;
-
-        _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         _aliveGameObject = transform.Find("Alive").gameObject;
         _brokenTopGameObject = transform.Find("Broken Top").gameObject;
@@ -58,54 +54,6 @@ public class CombatDummyController : MonoBehaviour
         CheckKnockBack();
     }
 
-    private void Damage(AttackDetails attackDetails)
-    {
-        _currentHealth -= attackDetails.damageAmount;
-
-        if (attackDetails.position.x < _aliveGameObject.transform.position.x)
-        {
-            _playerFacingDirection = 1;
-        }
-        else
-        {
-            _playerFacingDirection = -1;
-        }
-
-        Instantiate(hitParticle, _aliveAnimator.transform.position,
-            Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
-
-        if (_playerFacingDirection == 1)
-        {
-            _playerOnLeft = true;
-        }
-        else
-        {
-            _playerOnLeft = false;
-        }
-
-        _aliveAnimator.SetBool("playerOnLeft", _playerOnLeft);
-        _aliveAnimator.SetTrigger("damage");
-
-        if (applyKnockBack && _currentHealth > 0.0f)
-        {
-            // Knockback
-            KnockBack();
-        }
-
-        if (_currentHealth <= 0.0f)
-        {
-            // Die
-            Die();
-        }
-    }
-
-    private void KnockBack()
-    {
-        _knockBack = true;
-        _knockBackStart = Time.time;
-        _aliveRigidbody.velocity = new Vector2(knockBackSpeedX * _playerFacingDirection, knockBackSpeedY);
-    }
-
     private void CheckKnockBack()
     {
         if (Time.time >= _knockBackStart + knockBackDuration && _knockBack)
@@ -113,19 +61,5 @@ public class CombatDummyController : MonoBehaviour
             _knockBack = false;
             _aliveRigidbody.velocity = new Vector2(0.0f, _aliveRigidbody.velocity.y);
         }
-    }
-
-    private void Die()
-    {
-        _aliveGameObject.SetActive(false);
-        _brokenTopGameObject.SetActive(true);
-        _brokenBottomGameObject.SetActive(true);
-
-        _brokenTopGameObject.transform.position = _aliveGameObject.transform.position;
-        _brokenBottomGameObject.transform.position = _aliveGameObject.transform.position;
-
-        _brokenBottomRigidbody.velocity = new Vector2(knockBackSpeedX * _playerFacingDirection, knockBackSpeedY);
-        _brokenTopRigidbody.velocity = new Vector2(knockBackDeathSpeedX * _playerFacingDirection, knockBackDeathSpeedY);
-        _brokenTopRigidbody.AddTorque(deathTorque * -_playerFacingDirection, ForceMode2D.Impulse);
     }
 }

@@ -3,8 +3,6 @@ using UnityEngine;
 public class MeleeAttackState : AttackState
 {
     protected MeleeAttackStateData _stateData;
-
-    protected AttackDetails _attackDetails;
     
     public MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
         Transform attackPosition, MeleeAttackStateData stateData) 
@@ -16,9 +14,6 @@ public class MeleeAttackState : AttackState
     public override void Enter()
     {
         base.Enter();
-
-        _attackDetails.damageAmount = _stateData.attackDamage;
-        _attackDetails.position = _entity.transform.position;
     }
 
     public override void Exit()
@@ -50,7 +45,11 @@ public class MeleeAttackState : AttackState
 
         for (int i = 0; i < detectedObjects.Length; i++)
         {
-            detectedObjects[i].transform.SendMessage("Damage", _attackDetails);
+            IDamageable damageable = detectedObjects[i].GetComponent<IDamageable>();
+            damageable?.Damage(_stateData.attackDamage);
+
+            IKnockBackable knockBackable = detectedObjects[i].GetComponent<IKnockBackable>();
+            knockBackable?.KnockBack(_stateData.knockBackAngle, _stateData.knockBackStrength, _core.Movement.FacingDirection);
         }
     }
 }

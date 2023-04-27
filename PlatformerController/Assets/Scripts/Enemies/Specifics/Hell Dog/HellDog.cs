@@ -34,22 +34,11 @@ public class HellDog : Entity
         MeleeAttackState = new HellDogMeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
         StunState = new HellDogStunState(this, stateMachine, "stun", stunStateData, this);
         DeadState = new HellDogDeadState(this, stateMachine, "dead", deadStateData, this);
-        
-        stateMachine.Initialize(MoveState);
     }
 
-    public override void Damage(AttackDetails attackDetails)
+    private void Start()
     {
-        base.Damage(attackDetails);
-
-        if (_isDead)
-        {
-            stateMachine.ChangeState(DeadState);
-        }
-        else if (_isStunned && stateMachine.CurrentState != StunState)
-        {
-            stateMachine.ChangeState(StunState);
-        }
+        stateMachine.Initialize(MoveState);
     }
 
     public override void OnDrawGizmos()

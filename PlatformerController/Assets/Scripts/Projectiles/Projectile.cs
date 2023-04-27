@@ -16,8 +16,6 @@ public class Projectile : MonoBehaviour
     private float _travelDistance;
     private float _xStartPosition;
 
-    private AttackDetails _attackDetails;
-
     private Rigidbody2D _rigidbody;
 
     private void Start()
@@ -34,8 +32,6 @@ public class Projectile : MonoBehaviour
     {
         if (!_hasHitGround)
         {
-            _attackDetails.position = transform.position;
-            
             if (_isGravityOn)
             {
                 float angle = Mathf.Atan2(_rigidbody.velocity.y, _rigidbody.velocity.x) * Mathf.Rad2Deg;
@@ -53,7 +49,6 @@ public class Projectile : MonoBehaviour
 
             if (damageHit)
             {
-                damageHit.transform.SendMessage("Damage", _attackDetails);
                 Destroy(gameObject);
             }
 
@@ -76,7 +71,6 @@ public class Projectile : MonoBehaviour
     {
         _speed = speed;
         _travelDistance = travelDistance;
-        _attackDetails.damageAmount = damage;
     }
 
     private void OnDrawGizmos()
