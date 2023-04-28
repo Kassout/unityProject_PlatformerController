@@ -46,4 +46,32 @@ public class CollisionSenses : CoreComponent
     private Movement Movement => _movement ? _movement : _core.GetCoreComponent(out _movement);
 
     #endregion
+
+    #region Private
+
+    private void OnDrawGizmos()
+    {
+        if (_core)
+        {
+            if (WallCheck)
+            {
+                var wallCheckPosition = wallCheck.position;
+                Gizmos.DrawLine(wallCheckPosition, wallCheckPosition + Vector3.right * Movement.FacingDirection * wallCheckDistance);
+            }
+
+            if (LedgeCheckVertical)
+            {
+                var ledgeCheckVerticalPosition = ledgeCheckVertical.position;
+                Gizmos.DrawLine(ledgeCheckVerticalPosition, ledgeCheckVerticalPosition + Vector3.down * wallCheckDistance);
+            }
+
+            if (LedgeCheckHorizontal)
+            {
+                var ledgeCheckHorizontalPosition = ledgeCheckHorizontal.position;
+                Gizmos.DrawLine(ledgeCheckHorizontalPosition, ledgeCheckHorizontalPosition + Vector3.right * wallCheckDistance);
+            }
+        }
+    }
+
+    #endregion
 }

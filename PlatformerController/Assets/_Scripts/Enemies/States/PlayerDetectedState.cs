@@ -52,10 +52,10 @@ public class PlayerDetectedState : State
     public override void DoChecks()
     {
         base.DoChecks();
-        
-        _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
-        _isPlayerInMaxAggroRange = _entity.CheckPlayerInMaxAggroRange();
-        _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
+
+        _isPlayerInMinAggroRange = _core.GetCoreComponent<EnemySenses>().PlayerInMinAggroRange;
+        _isPlayerInMaxAggroRange = _core.GetCoreComponent<EnemySenses>().PlayerInMaxAggroRange;
+        _performCloseRangeAction = _core.GetCoreComponent<EnemySenses>().PlayerInCloseRangeAction;
         _isDetectingLedge = CollisionSenses.LedgeVertical;
     }
 }

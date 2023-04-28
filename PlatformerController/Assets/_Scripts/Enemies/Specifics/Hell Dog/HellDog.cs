@@ -41,10 +41,8 @@ public class HellDog : Entity
         stateMachine.Initialize(MoveState);
     }
 
-    public override void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
-        base.OnDrawGizmos();
-
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
     }
 }

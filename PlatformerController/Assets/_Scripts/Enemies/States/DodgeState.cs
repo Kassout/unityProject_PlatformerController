@@ -54,8 +54,8 @@ public class DodgeState : State
     {
         base.DoChecks();
 
-        _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
-        _isPlayerInMaxAggroRange = _entity.CheckPlayerInMaxAggroRange();
+        _performCloseRangeAction = _core.GetCoreComponent<EnemySenses>().PlayerInCloseRangeAction;
+        _isPlayerInMaxAggroRange = _core.GetCoreComponent<EnemySenses>().PlayerInMaxAggroRange;
         _isGrounded = CollisionSenses.Ground;
     }
 }

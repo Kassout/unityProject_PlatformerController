@@ -48,7 +48,7 @@ public abstract class AttackState : State
     {
         base.DoChecks();
 
-        _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
+        _isPlayerInMinAggroRange = _core.GetCoreComponent<EnemySenses>().PlayerInMinAggroRange;
     }
 
     public virtual void TriggerAttack()

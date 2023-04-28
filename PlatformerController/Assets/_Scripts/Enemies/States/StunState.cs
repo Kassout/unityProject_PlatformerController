@@ -63,7 +63,7 @@ public class StunState : State
         base.DoChecks();
 
         _isGrounded = CollisionSenses.Ground;
-        _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
-        _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
+        _performCloseRangeAction = _core.GetCoreComponent<EnemySenses>().PlayerInCloseRangeAction;
+        _isPlayerInMinAggroRange = _core.GetCoreComponent<EnemySenses>().PlayerInMinAggroRange;
     }
 }

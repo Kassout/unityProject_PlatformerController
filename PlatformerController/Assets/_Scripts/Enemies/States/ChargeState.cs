@@ -55,9 +55,9 @@ public class ChargeState : State
     {
         base.DoChecks();
         
-        _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
+        _isPlayerInMinAggroRange = _core.GetCoreComponent<EnemySenses>().PlayerInMinAggroRange;
         _isDetectingLedge = CollisionSenses.LedgeVertical;
         _isDetectingWall = CollisionSenses.WallFront;
-        _performCloseRangeAction = _entity.CheckPlayerInCloseRangeAction();
+        _performCloseRangeAction = _core.GetCoreComponent<EnemySenses>().PlayerInCloseRangeAction;
     }
 }

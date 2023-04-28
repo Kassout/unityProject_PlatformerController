@@ -47,6 +47,6 @@ public class MoveState : State
 
         _isDetectingLedge = CollisionSenses.LedgeVertical;
         _isDetectingWall = CollisionSenses.WallFront;
-        _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
+        _isPlayerInMinAggroRange = _core.GetCoreComponent<EnemySenses>().PlayerInMinAggroRange;
     }
 }

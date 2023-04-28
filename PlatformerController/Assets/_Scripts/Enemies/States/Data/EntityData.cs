@@ -11,16 +11,15 @@ public class EntityData : ScriptableObject
     public float ledgeCheckDistance = 0.4f;
     public float groundCheckRadius = 0.3f;
 
-    public float minAggroDistance = 3f;
-    public float maxAggroDistance = 4f;
+
 
     public float stunResistance = 3f;
     public float stunRecoveryTime = 2f;
     
-    public float closeRangeActionDistance = 1f;
+
 
     public GameObject hitParticle;
 
     public LayerMask whatIsGround;
-    public LayerMask whatIsPlayer;
+
 }

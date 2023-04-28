@@ -59,7 +59,7 @@ public class IdleState : State
     {
         base.DoChecks();
         
-        _isPlayerInMinAggroRange = _entity.CheckPlayerInMinAggroRange();
+        _isPlayerInMinAggroRange = _core.GetCoreComponent<EnemySenses>().PlayerInMinAggroRange;
     }
 
     public void SetFlipAfterIdle(bool flip)

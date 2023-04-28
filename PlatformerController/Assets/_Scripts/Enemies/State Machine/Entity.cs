@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -12,14 +13,9 @@ public class Entity : MonoBehaviour
     public AnimationToStateMachine AnimationToStateMachine { get; private set; }
     
     protected bool _isStunned;
-    protected bool _isDead;
 
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private Transform ledgeCheck;
-    [SerializeField] private Transform playerCheck;
-    [SerializeField] private Transform groundCheck;
 
-    private float _currentHealth;
+
     private float _currentStunResistance;
     private float _lastDamageTime;
     
@@ -32,7 +28,6 @@ public class Entity : MonoBehaviour
     {
         Core = GetComponentInChildren<Core>();
         
-        _currentHealth = entityData.maxHealth;
         _currentStunResistance = entityData.stunResistance;
         
         Animator = GetComponent<Animator>();
@@ -59,23 +54,7 @@ public class Entity : MonoBehaviour
         stateMachine.CurrentState.PhysicsUpdate();
     }
 
-    public virtual bool CheckPlayerInMinAggroRange()
-    {
-        return Physics2D.Raycast(playerCheck.position, transform.right, 
-            entityData.minAggroDistance, entityData.whatIsPlayer);
-    }
 
-    public virtual bool CheckPlayerInMaxAggroRange()
-    {
-        return Physics2D.Raycast(playerCheck.position, transform.right, 
-            entityData.maxAggroDistance, entityData.whatIsPlayer);
-    }
-
-    public virtual bool CheckPlayerInCloseRangeAction()
-    {
-        return Physics2D.Raycast(playerCheck.position, transform.right, 
-            entityData.closeRangeActionDistance, entityData.whatIsPlayer);
-    }
 
     public virtual void DamageHop(float velocity)
     {
@@ -87,18 +66,5 @@ public class Entity : MonoBehaviour
     {
         _isStunned = false;
         _currentStunResistance = entityData.stunResistance;
-    }
-
-    public virtual void OnDrawGizmos()
-    {
-        if (Core)
-        {
-            Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.right * Movement.FacingDirection * entityData.wallCheckDistance);
-            Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + Vector3.down * entityData.ledgeCheckDistance);
-        
-            Gizmos.DrawWireSphere(playerCheck.position + Vector3.right * entityData.closeRangeActionDistance, 0.2f);
-            Gizmos.DrawWireSphere(playerCheck.position + Vector3.right * entityData.minAggroDistance, 0.2f);
-            Gizmos.DrawWireSphere(playerCheck.position + Vector3.right * entityData.maxAggroDistance, 0.2f);   
-        }
     }
 }

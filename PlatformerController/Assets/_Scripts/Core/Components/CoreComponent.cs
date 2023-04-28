@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class CoreComponent : MonoBehaviour, ILogicUpdate
