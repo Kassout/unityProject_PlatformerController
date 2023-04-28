@@ -6,10 +6,14 @@ public class Stats : CoreComponent
     #region Fields
 
     public event Action OnHealthZero;
+    public event Action OnStunResistanceZero;
     
     [SerializeField] private float maxHealth;
+    [SerializeField] private float stunResistance;
+    [SerializeField] private float stunRecoveryTime;
 
     private float _currentHealth;
+    private float _currentStunResistance;
 
     #endregion
 
@@ -20,6 +24,7 @@ public class Stats : CoreComponent
         base.Awake();
 
         _currentHealth = maxHealth;
+        _currentStunResistance = stunResistance;
     }
 
     #endregion
@@ -40,6 +45,22 @@ public class Stats : CoreComponent
     public void IncreaseHealth(float amount)
     {
         _currentHealth += Mathf.Clamp(_currentHealth + amount, 0, maxHealth);
+    }
+
+    public void DecreaseStunResistance(float amount)
+    {
+        _currentStunResistance -= amount;
+
+        if (_currentStunResistance <= 0f)
+        {
+            ResetStunResistance();
+            OnStunResistanceZero?.Invoke();
+        }
+    }
+
+    private void ResetStunResistance()
+    {
+        _currentStunResistance = stunResistance;
     }
 
     #endregion

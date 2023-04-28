@@ -6,6 +6,7 @@ public class AggressiveWeapon : Weapon
 {
     private readonly List<IDamageable> _detectedDamageable = new List<IDamageable>();
     private List<IKnockBackable> _detectedKnockBackable = new List<IKnockBackable>();
+    private List<IStunnable> _detectedStunnable = new List<IStunnable>();
 
     protected AggressiveWeaponData _aggressiveWeaponData;
     
@@ -46,22 +47,34 @@ public class AggressiveWeapon : Weapon
         {
             knockBackable.KnockBack(details.knockBackAngle, details.knockBackStrength, Movement.FacingDirection);
         }
+
+        foreach (var stunnable in _detectedStunnable.ToList())
+        {
+            stunnable.Stun(details.stunAmount);
+        }
     }
 
     public void AddToDetected(Collider2D collision)
     {
         IDamageable damageable = collision.GetComponent<IDamageable>();
         
-        if (damageable != null)
+        if (damageable is { Damageable: true })
         {
             _detectedDamageable.Add(damageable);
         }
 
-        IKnockBackable knockBackable = collision.GetComponentInChildren<IKnockBackable>();
+        IKnockBackable knockBackable = collision.GetComponent<IKnockBackable>();
 
-        if (knockBackable != null)
+        if (knockBackable is { KnockBackable: true })
         {
             _detectedKnockBackable.Add(knockBackable);
+        }
+
+        IStunnable stunnable = collision.GetComponent<IStunnable>();
+
+        if (stunnable is { Stunnable: true })
+        {
+            _detectedStunnable.Add(stunnable);
         }
     }
 
@@ -74,11 +87,18 @@ public class AggressiveWeapon : Weapon
             _detectedDamageable.Remove(damageable);
         }
         
-        IKnockBackable knockBackable = collision.GetComponentInChildren<IKnockBackable>();
+        IKnockBackable knockBackable = collision.GetComponent<IKnockBackable>();
 
         if (knockBackable != null)
         {
             _detectedKnockBackable.Remove(knockBackable);
+        }
+
+        IStunnable stunnable = collision.GetComponent<IStunnable>();
+
+        if (stunnable != null)
+        {
+            _detectedStunnable.Remove(stunnable);
         }
     }
 }

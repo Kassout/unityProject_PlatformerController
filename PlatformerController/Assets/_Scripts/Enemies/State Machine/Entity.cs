@@ -14,13 +14,11 @@ public class Entity : MonoBehaviour
     
     protected bool _isStunned;
 
-
-
     private float _currentStunResistance;
     private float _lastDamageTime;
     
     private Vector2 _velocityWorkspace;
-    
+
     private Movement Movement => _movement ??= Core.GetCoreComponent<Movement>();
     private Movement _movement;
 
@@ -52,14 +50,6 @@ public class Entity : MonoBehaviour
     public virtual void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicsUpdate();
-    }
-
-
-
-    public virtual void DamageHop(float velocity)
-    {
-        _velocityWorkspace.Set(Movement.Rigidbody.velocity.x, velocity);
-        Movement.Rigidbody.velocity = _velocityWorkspace;
     }
 
     public virtual void ResetStunResistance()

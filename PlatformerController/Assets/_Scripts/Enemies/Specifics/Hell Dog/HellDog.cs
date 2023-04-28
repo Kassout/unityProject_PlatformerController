@@ -34,11 +34,19 @@ public class HellDog : Entity
         MeleeAttackState = new HellDogMeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
         StunState = new HellDogStunState(this, stateMachine, "stun", stunStateData, this);
         DeadState = new HellDogDeadState(this, stateMachine, "dead", deadStateData, this);
+
+        Core.GetCoreComponent<Stats>().OnStunResistanceZero += Stun;
     }
 
     private void Start()
     {
         stateMachine.Initialize(MoveState);
+    }
+    
+    public virtual void Stun()
+    {
+        _isStunned = true;
+        stateMachine.ChangeState(StunState);
     }
 
     private void OnDrawGizmos()

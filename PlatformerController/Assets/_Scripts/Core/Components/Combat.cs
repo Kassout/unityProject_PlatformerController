@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Combat : CoreComponent, IDamageable, IKnockBackable
+public class Combat : CoreComponent, IDamageable, IKnockBackable, IStunnable
 {
     #region Fields
 
@@ -37,13 +37,25 @@ public class Combat : CoreComponent, IDamageable, IKnockBackable
 
     #endregion
 
-    #region Public
+    #region IDamageable
+    
+    [SerializeField] private bool damageable;
+    
+    public bool Damageable => damageable;
 
     public void Damage(float amount)
     {
         Stats.DecreaseHealth(amount);
         ParticleManager.StartParticlesWithRandomRotation(damageParticles);
     }
+    
+    #endregion
+    
+    #region IKnockBackable
+
+    [SerializeField] private bool knockBackable;
+
+    public bool KnockBackable => knockBackable;
 
     public void KnockBack(Vector2 angle, float strength, int direction)
     {
@@ -51,6 +63,19 @@ public class Combat : CoreComponent, IDamageable, IKnockBackable
         Movement.CanSetVelocity = false;
         _isKnockBackActive = true;
         _knockBackStartTime = Time.time;
+    }
+    
+    #endregion
+    
+    #region IStunnable
+    
+    [SerializeField] private bool stunnable;
+
+    public bool Stunnable => stunnable;
+    
+    public void Stun(float amount)
+    {
+        Stats.DecreaseStunResistance(amount);
     }
 
     #endregion

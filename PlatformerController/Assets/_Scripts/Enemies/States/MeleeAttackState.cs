@@ -53,6 +53,9 @@ public class MeleeAttackState : AttackState
 
             IKnockBackable knockBackable = detectedObjects[i].GetComponent<IKnockBackable>();
             knockBackable?.KnockBack(_stateData.knockBackAngle, _stateData.knockBackStrength, Movement.FacingDirection);
+
+            IStunnable stunnable = detectedObjects[i].GetComponent<IStunnable>();
+            stunnable?.Stun(_stateData.stunDamage);
         }
     }
 }

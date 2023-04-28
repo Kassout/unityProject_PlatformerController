@@ -8,5 +8,6 @@ public struct WeaponAttackDetails
     public float movementSpeed;
     public float damageAmount;
     public float knockBackStrength;
+    public float stunAmount;
     public Vector2 knockBackAngle;
 }

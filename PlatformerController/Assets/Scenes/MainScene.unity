@@ -334,6 +334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
+  stunResistance: 2
+  stunRecoveryTime: 1
 --- !u!1 &128362230
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +381,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  stunResistance: 0
+  stunRecoveryTime: 0
 --- !u!1 &153792038
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,9 +428,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dae3833caaded942aa322241c299784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAggroDistance: 3
-  maxAggroDistance: 4
-  closeRangeActionDistance: 1
+  minAggroDistance: 7.5
+  maxAggroDistance: 8.5
+  closeRangeActionDistance: 1.3
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
@@ -876,9 +880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dae3833caaded942aa322241c299784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAggroDistance: 3
-  maxAggroDistance: 4
-  closeRangeActionDistance: 1
+  minAggroDistance: 7
+  maxAggroDistance: 8
+  closeRangeActionDistance: 1.75
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
@@ -1015,6 +1019,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxKnockBackTime: 0.2
   damageParticles: {fileID: 387398596249232441, guid: 039c2099e6ba0ea489ed7b1f89327952, type: 3}
+  damageable: 1
+  knockBackable: 1
+  stunnable: 0
 --- !u!61 &625480766
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1271,6 +1278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  stunResistance: 2
+  stunRecoveryTime: 1
 --- !u!1 &908733560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,6 +1454,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxKnockBackTime: 0.2
   damageParticles: {fileID: 387398596249232441, guid: 039c2099e6ba0ea489ed7b1f89327952, type: 3}
+  damageable: 1
+  knockBackable: 1
+  stunnable: 1
 --- !u!61 &1002651841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51699,6 +51711,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxKnockBackTime: 0.2
   damageParticles: {fileID: 387398596249232441, guid: 039c2099e6ba0ea489ed7b1f89327952, type: 3}
+  damageable: 1
+  knockBackable: 1
+  stunnable: 1
 --- !u!61 &1828052445
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53485,3 +53500,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitParticles: {fileID: 387398596249232441, guid: d8f269dcfc08d7e4db334849611adf02, type: 3}
+  damageable: 0

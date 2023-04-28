@@ -17,14 +17,17 @@ MonoBehaviour:
     movementSpeed: 3
     damageAmount: 10
     knockBackStrength: 10
+    stunAmount: 1
     knockBackAngle: {x: 1, y: 1}
   - attackName: Right Slash
     movementSpeed: 4
     damageAmount: 15
     knockBackStrength: 15
+    stunAmount: 1
     knockBackAngle: {x: 1, y: 1}
   - attackName: Up Slash
     movementSpeed: 2
     damageAmount: 20
     knockBackStrength: 20
+    stunAmount: 1
     knockBackAngle: {x: 1, y: 2}
