@@ -3,11 +3,17 @@ using UnityEngine;
 
 public class Stats : CoreComponent
 {
+    #region Fields
+
     public event Action OnHealthZero;
     
     [SerializeField] private float maxHealth;
 
     private float _currentHealth;
+
+    #endregion
+
+    #region CoreComponent
 
     protected override void Awake()
     {
@@ -15,6 +21,10 @@ public class Stats : CoreComponent
 
         _currentHealth = maxHealth;
     }
+
+    #endregion
+
+    #region Public
 
     public void DecreaseHealth(float amount)
     {
@@ -31,4 +41,6 @@ public class Stats : CoreComponent
     {
         _currentHealth += Mathf.Clamp(_currentHealth + amount, 0, maxHealth);
     }
+
+    #endregion
 }

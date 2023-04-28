@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class ParticleManager : CoreComponent
 {
+    #region Fields
+
     private Transform _particleContainer;
+
+    #endregion
+
+    #region CoreComponent
 
     protected override void Awake()
     {
@@ -10,6 +16,10 @@ public class ParticleManager : CoreComponent
 
         _particleContainer = GameObject.FindGameObjectWithTag("ParticleContainer").transform;
     }
+
+    #endregion
+
+    #region Public
 
     public GameObject StartParticles(GameObject particlePrefab, Vector2 position, Quaternion rotation)
     {
@@ -26,4 +36,6 @@ public class ParticleManager : CoreComponent
         var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
         return StartParticles(particlePrefab, transform.position, randomRotation);
     }
+
+    #endregion
 }

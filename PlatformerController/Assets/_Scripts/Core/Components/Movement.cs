@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class Movement : CoreComponent
 {
+    #region Fields
+
+    private Vector2 _workspace;
+
+    #endregion
+
+    #region Properties
+
     public bool CanSetVelocity { get; set; }
     
     public int FacingDirection { get; private set; }
@@ -9,8 +17,10 @@ public class Movement : CoreComponent
     public Vector2 CurrentVelocity { get; private set; }
 
     public Rigidbody2D Rigidbody { get; private set; }
-    
-    private Vector2 _workspace;
+
+    #endregion
+
+    #region CoreComponent
 
     protected override void Awake()
     {
@@ -26,6 +36,10 @@ public class Movement : CoreComponent
     {
         CurrentVelocity = Rigidbody.velocity;
     }
+
+    #endregion
+
+    #region Public
 
     public void SetVelocityZero()
     {
@@ -57,6 +71,24 @@ public class Movement : CoreComponent
         _workspace.Set(CurrentVelocity.x, velocity);
         SetFinalVelocity();
     }
+    
+    public void Flip()
+    {
+        FacingDirection *= -1;
+        Rigidbody.transform.Rotate(0f, 180f, 0f);
+    }
+
+    public void CheckIfShouldFlip(int xInput)
+    {
+        if (xInput != 0 && xInput != FacingDirection)
+        {
+            Flip();
+        }
+    }
+    
+    #endregion
+
+    #region Private
 
     private void SetFinalVelocity()
     {
@@ -66,18 +98,6 @@ public class Movement : CoreComponent
             CurrentVelocity = _workspace;
         }
     }
-    
-    public void Flip()
-    {
-        FacingDirection *= -1;
-        Rigidbody.transform.Rotate(0f, 180f, 0f);
-    }
-    
-    public void CheckIfShouldFlip(int xInput)
-    {
-        if (xInput != 0 && xInput != FacingDirection)
-        {
-            Flip();
-        }
-    }
+
+    #endregion
 }

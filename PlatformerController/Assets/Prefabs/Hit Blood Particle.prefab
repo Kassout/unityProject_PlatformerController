@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7741123667494441929}
   - component: {fileID: 3040099066407243283}
   m_Layer: 0
-  m_Name: Hell Dog Hit Particle
+  m_Name: Hit Blood Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

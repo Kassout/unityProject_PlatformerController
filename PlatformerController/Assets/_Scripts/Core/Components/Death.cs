@@ -1,16 +1,25 @@
-using System;
 using UnityEngine;
 
 public class Death : CoreComponent
 {
+    #region Fields
+
     [SerializeField] private GameObject[] deathParticles;
 
-    private ParticleManager ParticleManager => _particleManager ??= _core.GetCoreComponent<ParticleManager>();
-    private ParticleManager _particleManager;
-
-    private Stats Stats => _stats ??= _core.GetCoreComponent<Stats>();
     private Stats _stats;
+    private ParticleManager _particleManager;
     
+    #endregion
+
+    #region Properties
+
+    private Stats Stats => _stats ? _stats : _core.GetCoreComponent(out _stats);
+    private ParticleManager ParticleManager => _particleManager ? _particleManager : _core.GetCoreComponent(out _particleManager);
+
+    #endregion
+
+    #region Public
+
     public void Die()
     {
         for (int i = 0; i < deathParticles.Length; i++)
@@ -21,6 +30,10 @@ public class Death : CoreComponent
         _core.transform.parent.gameObject.SetActive(false);
     }
 
+    #endregion
+    
+    #region Private
+
     private void OnEnable()
     {
         Stats.OnHealthZero += Die;
@@ -30,4 +43,6 @@ public class Death : CoreComponent
     {
         Stats.OnHealthZero -= Die;
     }
+
+    #endregion
 }

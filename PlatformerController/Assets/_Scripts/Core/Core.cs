@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Core : MonoBehaviour
 {
+    #region Fields
+
     private readonly List<CoreComponent> _coreComponents = new();
 
-    private void Awake()
-    {
-    }
+    #endregion
+
+    #region Public
 
     public void LogicUpdate()
     {
@@ -47,9 +49,11 @@ public class Core : MonoBehaviour
         return null;
     }
 
-    public T GetCoreComponent<T>(ref T value) where T : CoreComponent
+    public T GetCoreComponent<T>(out T component) where T : CoreComponent
     {
-        value = GetCoreComponent<T>();
-        return value;
+        component = GetCoreComponent<T>();
+        return component;
     }
+
+    #endregion
 }

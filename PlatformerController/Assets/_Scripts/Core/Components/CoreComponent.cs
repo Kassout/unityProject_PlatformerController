@@ -2,7 +2,13 @@ using UnityEngine;
 
 public abstract class CoreComponent : MonoBehaviour, ILogicUpdate
 {
+    #region Fields
+
     protected Core _core;
+
+    #endregion
+
+    #region MonoBehaviour
 
     protected virtual void Awake()
     {
@@ -16,5 +22,11 @@ public abstract class CoreComponent : MonoBehaviour, ILogicUpdate
         _core.AddComponent(this);
     }
 
+    #endregion
+
+    #region Virtual
+
     public virtual void LogicUpdate() {}
+
+    #endregion
 }
