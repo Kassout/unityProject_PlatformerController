@@ -14,7 +14,12 @@ public class Projectile : MonoBehaviour
     
     private float _speed;
     private float _travelDistance;
+    private float _damage;
     private float _xStartPosition;
+    private float _stunDamage;
+    private float _knockBackStrength;
+    
+    private Vector2 _knockBackAngle;
 
     private Rigidbody2D _rigidbody;
 
@@ -49,6 +54,15 @@ public class Projectile : MonoBehaviour
 
             if (damageHit)
             {
+                IDamageable damageable = damageHit.GetComponent<IDamageable>();
+                damageable?.Damage(_damage);
+                
+                IKnockBackable knockBackable = damageHit.GetComponent<IKnockBackable>();
+                int facingDirection = (int)_rigidbody.velocity.normalized.x;
+                knockBackable?.KnockBack(_knockBackAngle, _knockBackStrength, facingDirection);
+                
+                IStunnable stunnable = damageHit.GetComponent<IStunnable>();
+                stunnable?.Stun(_stunDamage);
                 Destroy(gameObject);
             }
 
@@ -67,10 +81,14 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void FireProjectile(float speed, float travelDistance, float damage)
+    public void FireProjectile(float speed, float travelDistance, float damage, float stunDamage, float knockBackStrength, Vector2 knockBackAngle)
     {
         _speed = speed;
         _travelDistance = travelDistance;
+        _damage = damage;
+        _stunDamage = stunDamage;
+        _knockBackStrength = knockBackStrength;
+        _knockBackAngle = knockBackAngle;
     }
 
     private void OnDrawGizmos()

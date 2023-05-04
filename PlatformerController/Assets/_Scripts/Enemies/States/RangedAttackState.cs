@@ -44,7 +44,7 @@ public class RangedAttackState : AttackState
 
         _projectile = Object.Instantiate(_stateData.projectile, _attackPosition.position, _attackPosition.rotation);
         _projectileScript = _projectile.GetComponent<Projectile>();
-        _projectileScript.FireProjectile(_stateData.projectileSpeed, _stateData.projectileTravelDistance, _stateData.projectileDamage);
+        _projectileScript.FireProjectile(_stateData.projectileSpeed, _stateData.projectileTravelDistance, _stateData.projectileDamage, _stateData.stunDamage, _stateData.knockBackStrength, _stateData.knockBackAngle);
     }
 
     public override void FinishAttack()
