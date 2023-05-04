@@ -13,8 +13,8 @@ public class IdleState : State
     private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
     private Movement _movement;
     
-    public IdleState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, IdleStateData stateData) 
-        : base(entity, stateMachine, animationBoolName)
+    public IdleState(Entity entity, string animationBoolName, IdleStateData stateData) 
+        : base(entity, animationBoolName)
     {
         _stateData = stateData;
     }

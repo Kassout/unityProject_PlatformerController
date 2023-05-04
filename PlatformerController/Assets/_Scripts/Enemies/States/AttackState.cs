@@ -10,9 +10,9 @@ public abstract class AttackState : State
     private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
     private Movement _movement;
 
-    protected AttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName,
+    protected AttackState(Entity entity, string animationBoolName,
         Transform attackPosition)
-        : base(entity, stateMachine, animationBoolName)
+        : base(entity, animationBoolName)
     {
         _attackPosition = attackPosition;
     }

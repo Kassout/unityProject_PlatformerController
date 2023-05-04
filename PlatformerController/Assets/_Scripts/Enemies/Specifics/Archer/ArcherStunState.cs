@@ -1,22 +1,11 @@
 public class ArcherStunState : StunState
 {
-    private Archer _archer;
+    private readonly Archer _archer;
     
-    public ArcherStunState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        StunStateData stateData, Archer archer) 
-        : base(entity, stateMachine, animationBoolName, stateData)
+    public ArcherStunState(Archer archer, string animationBoolName, StunStateData stateData) 
+        : base(archer, animationBoolName, stateData)
     {
         _archer = archer;
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -34,15 +23,5 @@ public class ArcherStunState : StunState
                 _stateMachine.ChangeState(_archer.LookForPlayerState);
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
     }
 }

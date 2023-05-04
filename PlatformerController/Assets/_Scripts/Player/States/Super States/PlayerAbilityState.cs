@@ -10,9 +10,7 @@ public class PlayerAbilityState : PlayerState
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
     
-    public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerAbilityState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void Enter()
     {

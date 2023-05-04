@@ -3,22 +3,12 @@ using UnityEngine;
 
 public class ArcherRangedAttackState : RangedAttackState
 {
-    private Archer _archer;
+    private readonly Archer _archer;
     
-    public ArcherRangedAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        Transform attackPosition, RangedAttackStateData stateData, Archer archer) : base(entity, stateMachine, animationBoolName, attackPosition, stateData)
+    public ArcherRangedAttackState(Archer archer, string animationBoolName, Transform attackPosition, RangedAttackStateData stateData) 
+        : base(archer, animationBoolName, attackPosition, stateData)
     {
         _archer = archer;
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -36,25 +26,5 @@ public class ArcherRangedAttackState : RangedAttackState
                 _stateMachine.ChangeState(_archer.LookForPlayerState);
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
-    public override void TriggerAttack()
-    {
-        base.TriggerAttack();
-    }
-
-    public override void FinishAttack()
-    {
-        base.FinishAttack();
     }
 }

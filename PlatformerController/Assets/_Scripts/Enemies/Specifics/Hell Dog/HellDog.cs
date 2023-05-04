@@ -9,7 +9,7 @@ public class HellDog : Entity
     public HellDogLookForPlayerState LookForPlayerState { get; private set; }
     public HellDogMeleeAttackState MeleeAttackState { get; private set; }
     public HellDogStunState StunState { get; private set; }
-    public HellDogDeadState DeadState { get; private set; }
+    public DeadState DeadState { get; private set; }
 
     [SerializeField] private IdleStateData idleStateData;
     [SerializeField] private MoveStateData moveStateData;
@@ -26,14 +26,14 @@ public class HellDog : Entity
     {
         base.Awake();
 
-        MoveState = new HellDogMoveState(this, stateMachine, "move", moveStateData, this);
-        IdleState = new HellDogIdleState(this, stateMachine, "idle", idleStateData, this);
-        PlayerDetectedState = new HellDogPlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
-        ChargeState = new HellDogChargeState(this, stateMachine, "charge", chargeStateData, this);
-        LookForPlayerState = new HellDogLookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
-        MeleeAttackState = new HellDogMeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
-        StunState = new HellDogStunState(this, stateMachine, "stun", stunStateData, this);
-        DeadState = new HellDogDeadState(this, stateMachine, "dead", deadStateData, this);
+        MoveState = new HellDogMoveState(this, "move", moveStateData);
+        IdleState = new HellDogIdleState(this, "idle", idleStateData);
+        PlayerDetectedState = new HellDogPlayerDetectedState(this, "playerDetected", playerDetectedStateData);
+        ChargeState = new HellDogChargeState(this, "charge", chargeStateData);
+        LookForPlayerState = new HellDogLookForPlayerState(this, "lookForPlayer", lookForPlayerStateData);
+        MeleeAttackState = new HellDogMeleeAttackState(this, "meleeAttack", meleeAttackPosition, meleeAttackStateData);
+        StunState = new HellDogStunState(this, "stun", stunStateData);
+        DeadState = new DeadState(this, "dead", deadStateData);
 
         Core.GetCoreComponent<Stats>().OnStunResistanceZero += Stun;
     }

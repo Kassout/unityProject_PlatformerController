@@ -1,8 +1,6 @@
 public class PlayerCrouchIdleState : PlayerGroundedState
 {
-    public PlayerCrouchIdleState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerCrouchIdleState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void Enter()
     {

@@ -1,8 +1,6 @@
 public class PlayerLandState : PlayerGroundedState
 {
-    public PlayerLandState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerLandState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void LogicUpdate()
     {

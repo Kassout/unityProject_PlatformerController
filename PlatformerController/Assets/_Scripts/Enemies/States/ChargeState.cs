@@ -16,7 +16,7 @@ public class ChargeState : State
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
     
-    public ChargeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, ChargeStateData stateData) : base(entity, stateMachine, animationBoolName)
+    public ChargeState(Entity entity, string animationBoolName, ChargeStateData stateData) : base(entity, animationBoolName)
     {
         _stateData = stateData;
     }

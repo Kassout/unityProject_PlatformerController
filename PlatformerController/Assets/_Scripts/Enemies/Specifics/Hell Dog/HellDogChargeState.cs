@@ -1,22 +1,11 @@
 public class HellDogChargeState : ChargeState
 {
-    private HellDog _hellDog;
+    private readonly HellDog _hellDog;
     
-    public HellDogChargeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        ChargeStateData stateData, HellDog hellDog) 
-        : base(entity, stateMachine, animationBoolName, stateData)
+    public HellDogChargeState(HellDog hellDog, string animationBoolName, ChargeStateData stateData) 
+        : base(hellDog, animationBoolName, stateData)
     {
         _hellDog = hellDog;
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -42,15 +31,5 @@ public class HellDogChargeState : ChargeState
                 _stateMachine.ChangeState(_hellDog.LookForPlayerState);
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
     }
 }

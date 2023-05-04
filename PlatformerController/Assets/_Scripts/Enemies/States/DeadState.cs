@@ -4,8 +4,8 @@ public class DeadState : State
 {
     protected DeadStateData _stateData;
     
-    public DeadState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, DeadStateData stateData) 
-        : base(entity, stateMachine, animationBoolName)
+    public DeadState(Entity entity, string animationBoolName, DeadStateData stateData) 
+        : base(entity, animationBoolName)
     {
         _stateData = stateData;
     }

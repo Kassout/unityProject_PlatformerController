@@ -1,22 +1,11 @@
 public class ArcherIdleState : IdleState
 {
-    private Archer _archer;
+    private readonly Archer _archer;
     
-    public ArcherIdleState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        IdleStateData stateData, Archer archer) 
-        : base(entity, stateMachine, animationBoolName, stateData)
+    public ArcherIdleState(Archer archer, string animationBoolName, IdleStateData stateData) 
+        : base(archer, animationBoolName, stateData)
     {
         _archer = archer;
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -31,15 +20,5 @@ public class ArcherIdleState : IdleState
         {
             _stateMachine.ChangeState(_archer.MoveState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
     }
 }

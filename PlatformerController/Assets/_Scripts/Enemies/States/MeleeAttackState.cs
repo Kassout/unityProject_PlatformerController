@@ -7,9 +7,9 @@ public class MeleeAttackState : AttackState
     private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
     private Movement _movement;
     
-    public MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
+    public MeleeAttackState(Entity entity, string animationBoolName, 
         Transform attackPosition, MeleeAttackStateData stateData) 
-        : base(entity, stateMachine, animationBoolName, attackPosition)
+        : base(entity, animationBoolName, attackPosition)
     {
         _stateData = stateData;
     }

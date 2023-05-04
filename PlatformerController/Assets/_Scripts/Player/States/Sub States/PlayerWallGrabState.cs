@@ -4,9 +4,7 @@ public class PlayerWallGrabState : PlayerTouchingWallState
 {
     private Vector2 _holdPosition;
     
-    public PlayerWallGrabState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerWallGrabState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void Enter()
     {

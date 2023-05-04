@@ -15,8 +15,8 @@ public class DodgeState : State
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
     
-    public DodgeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, DodgeStateData stateData) 
-        : base(entity, stateMachine, animationBoolName)
+    public DodgeState(Entity entity, string animationBoolName, DodgeStateData stateData) 
+        : base(entity, animationBoolName)
     {
         _stateData = stateData;
     }

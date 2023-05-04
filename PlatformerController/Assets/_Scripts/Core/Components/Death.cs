@@ -22,11 +22,11 @@ public class Death : CoreComponent
 
     public void Die()
     {
-        for (int i = 0; i < deathParticles.Length; i++)
+        foreach (var particle in deathParticles)
         {
-            ParticleManager.StartParticles(deathParticles[i]);
+            ParticleManager.StartParticles(particle);
         }
-        
+
         _core.transform.parent.gameObject.SetActive(false);
     }
 

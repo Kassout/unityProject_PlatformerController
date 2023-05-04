@@ -1,18 +1,11 @@
 public class PlayerIdleState : PlayerGroundedState
 {
-    public PlayerIdleState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerIdleState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void Enter()
     {
         base.Enter();
         Movement.SetVelocityX(0f);
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -30,15 +23,5 @@ public class PlayerIdleState : PlayerGroundedState
                 _stateMachine.ChangeState(_player.CrouchIdleState);
             }   
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
     }
 }

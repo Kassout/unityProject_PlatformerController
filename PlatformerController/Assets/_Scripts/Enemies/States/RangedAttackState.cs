@@ -7,8 +7,8 @@ public class RangedAttackState : AttackState
     protected GameObject _projectile;
     protected Projectile _projectileScript;
     
-    public RangedAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        Transform attackPosition, RangedAttackStateData stateData) : base(entity, stateMachine, animationBoolName, attackPosition)
+    public RangedAttackState(Entity entity, string animationBoolName, 
+        Transform attackPosition, RangedAttackStateData stateData) : base(entity, animationBoolName, attackPosition)
     {
         _stateData = stateData;
     }

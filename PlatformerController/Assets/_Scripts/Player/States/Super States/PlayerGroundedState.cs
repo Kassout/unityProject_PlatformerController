@@ -18,9 +18,7 @@ public class PlayerGroundedState : PlayerState
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
 
-    public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData,
-        string animationBoolName)
-        : base(player, stateMachine, playerData, animationBoolName)
+    public PlayerGroundedState(Player player, string animationBoolName) : base(player, animationBoolName)
     {
         _collisionSenses = _core.GetCoreComponent<CollisionSenses>();
     }

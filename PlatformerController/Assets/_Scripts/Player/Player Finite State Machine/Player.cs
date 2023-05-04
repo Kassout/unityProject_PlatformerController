@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     
     [SerializeField] private PlayerData playerData;
     
+    public PlayerData PlayerData => playerData;
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -51,21 +52,21 @@ public class Player : MonoBehaviour
         
         StateMachine = new PlayerStateMachine();
 
-        IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
-        MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
-        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
-        InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
-        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
-        WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
-        WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
-        WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
-        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
-        LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
-        DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
-        CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
-        CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
-        PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
-        SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        IdleState = new PlayerIdleState(this, "idle");
+        MoveState = new PlayerMoveState(this, "move");
+        JumpState = new PlayerJumpState(this, "inAir");
+        InAirState = new PlayerInAirState(this, "inAir");
+        LandState = new PlayerLandState(this, "land");
+        WallSlideState = new PlayerWallSlideState(this, "wallSlide");
+        WallGrabState = new PlayerWallGrabState(this, "wallGrab");
+        WallClimbState = new PlayerWallClimbState(this, "wallClimb");
+        WallJumpState = new PlayerWallJumpState(this, "inAir");
+        LedgeClimbState = new PlayerLedgeClimbState(this, "ledgeClimbState");
+        DashState = new PlayerDashState(this, "inAir");
+        CrouchIdleState = new PlayerCrouchIdleState(this, "crouchIdle");
+        CrouchMoveState = new PlayerCrouchMoveState(this, "crouchMove");
+        PrimaryAttackState = new PlayerAttackState(this, "attack");
+        SecondaryAttackState = new PlayerAttackState(this, "attack");
     }
 
     private void Start()

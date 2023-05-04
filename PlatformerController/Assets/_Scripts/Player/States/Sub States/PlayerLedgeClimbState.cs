@@ -22,9 +22,7 @@ public class PlayerLedgeClimbState : PlayerState
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
     
-    public PlayerLedgeClimbState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerLedgeClimbState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void Enter()
     {

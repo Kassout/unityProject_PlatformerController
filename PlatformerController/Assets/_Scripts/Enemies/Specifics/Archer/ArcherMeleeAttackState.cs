@@ -4,10 +4,8 @@ public class ArcherMeleeAttackState : MeleeAttackState
 {
     private Archer _archer;
 
-
-    public ArcherMeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        Transform attackPosition, MeleeAttackStateData stateData, Archer archer) 
-        : base(entity, stateMachine, animationBoolName, attackPosition, stateData)
+    public ArcherMeleeAttackState(Archer archer, string animationBoolName, Transform attackPosition, MeleeAttackStateData stateData) 
+        : base(archer, animationBoolName, attackPosition, stateData)
     {
         _archer = archer;
     }

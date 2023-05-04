@@ -12,8 +12,8 @@ public class MoveState : State
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
     
-    public MoveState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, MoveStateData stateData) 
-        : base(entity, stateMachine, animationBoolName)
+    public MoveState(Entity entity, string animationBoolName, MoveStateData stateData) 
+        : base(entity, animationBoolName)
     {
         _stateData = stateData;
     }

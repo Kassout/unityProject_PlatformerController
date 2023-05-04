@@ -15,9 +15,7 @@ public class PlayerTouchingWallState : PlayerState
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
 
-    public PlayerTouchingWallState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerTouchingWallState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void Enter()
     {

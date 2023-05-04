@@ -1,8 +1,6 @@
 public class PlayerWallClimbState : PlayerTouchingWallState
 {
-    public PlayerWallClimbState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerWallClimbState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void LogicUpdate()
     {

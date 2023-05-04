@@ -16,9 +16,9 @@ public class LookForPlayerState : State
     private Movement Movement => _movement ??= _core.GetCoreComponent<Movement>();
     private Movement _movement;
     
-    public LookForPlayerState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName,
+    public LookForPlayerState(Entity entity, string animationBoolName,
         LookForPlayerStateData stateData) 
-        : base(entity, stateMachine, animationBoolName)
+        : base(entity, animationBoolName)
     {
         _stateData = stateData;
     }

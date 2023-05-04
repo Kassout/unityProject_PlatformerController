@@ -29,14 +29,7 @@ public class PlayerInAirState : PlayerState
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
     
-    public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
+    public PlayerInAirState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void Exit()
     {
@@ -110,11 +103,6 @@ public class PlayerInAirState : PlayerState
             _player.Animator.SetFloat("yVelocity", Movement.CurrentVelocity.y);
             _player.Animator.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 
     public override void DoChecks()

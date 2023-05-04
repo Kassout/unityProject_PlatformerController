@@ -2,11 +2,9 @@ public class PlayerJumpState : PlayerAbilityState
 {
     private int _amountOfJumpsLeft;
 
-    public PlayerJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData,
-        string animationBoolName)
-        : base(player, stateMachine, playerData, animationBoolName)
+    public PlayerJumpState(Player player, string animationBoolName) : base(player, animationBoolName)
     {
-        _amountOfJumpsLeft = playerData.amountOfJumps;
+        _amountOfJumpsLeft = player.PlayerData.amountOfJumps;
     }
 
     public override void Enter()

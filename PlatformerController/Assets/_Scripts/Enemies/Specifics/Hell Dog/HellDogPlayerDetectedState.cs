@@ -1,22 +1,11 @@
 public class HellDogPlayerDetectedState : PlayerDetectedState
 {
-    private HellDog _hellDog;
+    private readonly HellDog _hellDog;
     
-    public HellDogPlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        PlayerDetectedStateData stateData, HellDog hellDog) 
-        : base(entity, stateMachine, animationBoolName, stateData)
+    public HellDogPlayerDetectedState(HellDog hellDog, string animationBoolName, PlayerDetectedStateData stateData) 
+        : base(hellDog, animationBoolName, stateData)
     {
         _hellDog = hellDog;
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -40,10 +29,5 @@ public class HellDogPlayerDetectedState : PlayerDetectedState
             Movement.Flip();
             _stateMachine.ChangeState(_hellDog.MoveState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

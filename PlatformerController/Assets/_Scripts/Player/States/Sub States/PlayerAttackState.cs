@@ -9,9 +9,7 @@ public class PlayerAttackState : PlayerAbilityState
 
     private Weapon _weapon;
 
-    public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerAttackState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void Enter()
     {

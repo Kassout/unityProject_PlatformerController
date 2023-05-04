@@ -1,24 +1,13 @@
 public class ArcherDodgeState : DodgeState
 {
-    private Archer _archer;
+    private readonly Archer _archer;
     
-    public ArcherDodgeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        DodgeStateData stateData, Archer archer) 
-        : base(entity, stateMachine, animationBoolName, stateData)
+    public ArcherDodgeState(Archer archer, string animationBoolName, DodgeStateData stateData) 
+        : base(archer, animationBoolName, stateData)
     {
         _archer = archer;
     }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
+    
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -38,15 +27,5 @@ public class ArcherDodgeState : DodgeState
                 _stateMachine.ChangeState(_archer.LookForPlayerState);
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
     }
 }

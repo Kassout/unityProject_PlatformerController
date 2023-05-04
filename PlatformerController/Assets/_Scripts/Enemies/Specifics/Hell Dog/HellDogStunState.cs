@@ -1,24 +1,12 @@
 public class HellDogStunState : StunState
 {
-    private HellDog _hellDog;
+    private readonly HellDog _hellDog;
     
-    public HellDogStunState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        StunStateData stateData, HellDog hellDog) 
-        : base(entity, stateMachine, animationBoolName, stateData)
+    public HellDogStunState(HellDog hellDog, string animationBoolName, StunStateData stateData) 
+        : base(hellDog, animationBoolName, stateData)
     {
         _hellDog = hellDog;
     }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -39,15 +27,5 @@ public class HellDogStunState : StunState
                 _stateMachine.ChangeState(_hellDog.LookForPlayerState);
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
     }
 }

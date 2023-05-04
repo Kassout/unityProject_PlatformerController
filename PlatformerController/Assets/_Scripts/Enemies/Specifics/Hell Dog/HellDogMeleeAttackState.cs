@@ -2,23 +2,12 @@ using UnityEngine;
 
 public class HellDogMeleeAttackState : MeleeAttackState
 {
-    private HellDog _hellDog;
+    private readonly HellDog _hellDog;
     
-    public HellDogMeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, 
-        Transform attackPosition, MeleeAttackStateData stateData, HellDog hellDog) 
-        : base(entity, stateMachine, animationBoolName, attackPosition, stateData)
+    public HellDogMeleeAttackState(HellDog hellDog, string animationBoolName, Transform attackPosition, MeleeAttackStateData stateData) 
+        : base(hellDog, animationBoolName, attackPosition, stateData)
     {
         _hellDog = hellDog;
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -36,20 +25,5 @@ public class HellDogMeleeAttackState : MeleeAttackState
                 _stateMachine.ChangeState(_hellDog.LookForPlayerState);
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
-    public override void TriggerAttack()
-    {
-        base.TriggerAttack();
     }
 }

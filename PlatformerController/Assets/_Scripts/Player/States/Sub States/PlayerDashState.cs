@@ -13,9 +13,7 @@ public class PlayerDashState : PlayerAbilityState
     private Vector2 _dashDirectionInput;
     private Vector2 _lastAfterImagePosition;
 
-    public PlayerDashState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, 
-        string animationBoolName) 
-        : base(player, stateMachine, playerData, animationBoolName) {}
+    public PlayerDashState(Player player, string animationBoolName) : base(player, animationBoolName) {}
 
     public override void Enter()
     {

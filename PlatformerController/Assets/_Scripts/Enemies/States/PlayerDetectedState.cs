@@ -16,7 +16,7 @@ public class PlayerDetectedState : State
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
     
-    public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, PlayerDetectedStateData stateData) : base(entity, stateMachine, animationBoolName)
+    public PlayerDetectedState(Entity entity, string animationBoolName, PlayerDetectedStateData stateData) : base(entity, animationBoolName)
     {
         _stateData = stateData;
     }

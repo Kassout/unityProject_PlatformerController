@@ -8,7 +8,7 @@ public class Archer : Entity
     public ArcherMeleeAttackState MeleeAttackState { get; private set; }
     public ArcherLookForPlayerState LookForPlayerState { get; private set; }
     public ArcherStunState StunState { get; private set; }
-    public ArcherDeadState DeadState { get; private set; }
+    public DeadState DeadState { get; private set; }
     public ArcherDodgeState DodgeState { get; private set; }
     public ArcherRangedAttackState RangedAttackState { get; private set; }
 
@@ -31,16 +31,19 @@ public class Archer : Entity
     {
         base.Awake();        
         
-        MoveState = new ArcherMoveState(this, stateMachine, "move", moveStateData, this);
-        IdleState = new ArcherIdleState(this, stateMachine, "idle", idleStateData, this);
-        PlayerDetectedState = new ArcherPlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
-        MeleeAttackState = new ArcherMeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
-        LookForPlayerState = new ArcherLookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
-        StunState = new ArcherStunState(this, stateMachine, "stun", stunStateData, this);
-        DeadState = new ArcherDeadState(this, stateMachine, "dead", deadStateData, this);
-        DodgeState = new ArcherDodgeState(this, stateMachine, "dodge", dodgeStateData, this);
-        RangedAttackState =
-            new ArcherRangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
+        MoveState = new ArcherMoveState(this, "move", moveStateData);
+        IdleState = new ArcherIdleState(this, "idle", idleStateData);
+        PlayerDetectedState = new ArcherPlayerDetectedState(this, "playerDetected", 
+            playerDetectedStateData);
+        MeleeAttackState = new ArcherMeleeAttackState(this, "meleeAttack", meleeAttackPosition, 
+            meleeAttackStateData);
+        LookForPlayerState = new ArcherLookForPlayerState(this, "lookForPlayer", 
+            lookForPlayerStateData);
+        StunState = new ArcherStunState(this, "stun", stunStateData);
+        DeadState = new DeadState(this, "dead", deadStateData);
+        DodgeState = new ArcherDodgeState(this, "dodge", dodgeStateData);
+        RangedAttackState = new ArcherRangedAttackState(this, "rangedAttack", rangedAttackPosition, 
+            rangedAttackStateData);
     }
 
     private void Start()

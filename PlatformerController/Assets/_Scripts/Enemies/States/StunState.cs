@@ -16,8 +16,8 @@ public class StunState : State
     private CollisionSenses CollisionSenses => _collisionSenses ??= _core.GetCoreComponent<CollisionSenses>();
     private CollisionSenses _collisionSenses;
     
-    public StunState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, StunStateData stateData) 
-        : base(entity, stateMachine, animationBoolName)
+    public StunState(Entity entity, string animationBoolName, StunStateData stateData) 
+        : base(entity, animationBoolName)
     {
         _stateData = stateData;
     }

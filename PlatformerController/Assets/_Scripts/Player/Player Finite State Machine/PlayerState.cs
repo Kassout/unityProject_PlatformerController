@@ -7,20 +7,20 @@ public class PlayerState
     
     protected float _startTime;
 
-    protected Core _core;
-    protected Player _player;
-    protected PlayerStateMachine _stateMachine;
-    protected PlayerData _playerData;
+    protected readonly Core _core;
+    protected readonly Player _player;
+    protected readonly PlayerData _playerData;
+    protected readonly PlayerStateMachine _stateMachine;
 
-    private string _animationBoolName;
+    private readonly string _animationBoolName;
 
-    public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName)
+    protected PlayerState(Player player, string animationBoolName)
     {
         _player = player;
-        _stateMachine = stateMachine;
-        _playerData = playerData;
-        _animationBoolName = animationBoolName;
         _core = player.Core;
+        _stateMachine = player.StateMachine;
+        _playerData = player.PlayerData;
+        _animationBoolName = animationBoolName;
     }
 
     public virtual void Enter()

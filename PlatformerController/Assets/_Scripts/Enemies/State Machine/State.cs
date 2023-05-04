@@ -10,12 +10,13 @@ public abstract class State
     protected readonly Entity _entity;
     protected readonly FiniteStateMachine _stateMachine;
 
-    protected State(Entity entity, FiniteStateMachine stateMachine, string animationBoolName)
+    protected State(Entity entity, string animationBoolName)
     {
         _entity = entity;
-        _stateMachine = stateMachine;
-        _animationBoolName = animationBoolName;
         _core = entity.Core;
+        _stateMachine = entity.stateMachine;
+        _animationBoolName = animationBoolName;
+
     }
 
     public virtual void Enter()
